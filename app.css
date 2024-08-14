@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #202020;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+}
+
+h1 {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 300px;
+    margin: 0;
+}
+
+img {
+    width: 300px;
+    height: 150px;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+}
+
+.website-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.website-card img {
+    width: 100%;
+    height: auto;
+}
+
+.website-info {
+    padding: 15px;
+}
+
+.website-name {
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+}
+
+.website-tags {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+.tags {
+    color: #007bff;
+}
+
+.website-summary {
+    font-size: 1rem;
+    color: #666;
+    margin: 10px 0;
+}
+
+.website-url {
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.website-url:hover {
+    background-color: #0056b3;
+}
+
+#filter-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#tag-filters {
+    margin-top: 10px;
+}
+
+#tag-filters label {
+    margin-right: 15px;
+    font-size: 0.9rem;
+}
+
+#searchInput {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
