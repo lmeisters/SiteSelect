@@ -9,20 +9,47 @@
     <body>
         <header>
             <h1>SiteSelect</h1>
+            <div class="header-headings">
+                <h2>
+                    Your Ultimate Destination for Instant Inspiration and
+                    Innovative Ideas—Discover a Curated Collection of Stunning
+                    Websites to Spark Your Creativity and Elevate Your Designs.
+                </h2>
+            </div>
 
-            <div id="filter-container">
+            <nav>
+                <a href="#">About</a>
+                <span id="searchToggle">Search</span>
+            </nav>
+        </header>
+
+        <hr />
+
+        <section class="main">
+            <div id="searchContainer">
                 <input
                     type="text"
                     id="searchInput"
                     placeholder="Search websites..."
                 />
+                <span id="closeSearch">Close</span>
+            </div>
+
+            <div id="filter-container">
+                <button id="filterButton">Filter</button>
+
+                <div id="filterMenu" style="display: none"></div>
                 <!-- Filters will be dynamically generated here -->
             </div>
-        </header>
 
-        <div id="gallery" class="gallery-container">
-            <!-- Website cards will be dynamically generated here -->
-        </div>
+            <div id="gallery" class="gallery-container">
+                <!-- Website cards will be dynamically generated here -->
+            </div>
+
+            <h3>Load more</h3>
+        </section>
+
+        <footer><h1>This is a footer</h1></footer>
 
         <script src="app.js"></script>
     </body>
