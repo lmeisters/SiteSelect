@@ -180,6 +180,13 @@ function filterWebsites() {
     renderGallery(filteredWebsites);
 }
 
+// Function to toggle the visibility of the filter menu
+function toggleFilterMenu() {
+    const filterMenu = document.getElementById("filterMenu");
+    filterMenu.style.display =
+        filterMenu.style.display === "none" ? "block" : "none";
+}
+
 // Function to toggle search bar visibility
 function toggleSearchBar() {
     const searchContainer = document.getElementById("searchContainer");
@@ -198,9 +205,16 @@ function toggleSearchBar() {
 
 // Event listeners
 document.addEventListener("DOMContentLoaded", function () {
+    const filterButton = document.getElementById("filterButton");
     const searchToggle = document.getElementById("searchToggle");
     const searchContainer = document.getElementById("searchContainer");
     const closeSearch = document.getElementById("closeSearch");
+
+    // Toggle the filter menu visibility when the Filter button is clicked
+    filterButton.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevents the click from closing the filter menu immediately
+        toggleFilterMenu(); // Toggle the filter menu
+    });
 
     // Toggle the search bar visibility when the Search button is clicked
     searchToggle.addEventListener("click", function (event) {
