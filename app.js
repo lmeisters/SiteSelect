@@ -26,6 +26,40 @@ const websites = [
         imageUrl:
             "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
     },
+    {
+        name: "Awwwards",
+        tags: ["Education", "SaaS", "Technology"],
+        summary:
+            "Get inspired by real landing page examples with full website screenshots",
+        url: "https://www.example1.com",
+        imageUrl:
+            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
+    },
+    {
+        name: "Example Site 2",
+        tags: ["eCommerce", "Health & Fitness", "Blog"],
+        summary:
+            "This is a summary of the second website. It offers insights into scientific research.",
+        url: "https://www.example2.com",
+        imageUrl:
+            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
+    },
+    {
+        name: "Example Site 3",
+        tags: ["Portfolio", "Design Tools", "Technology"],
+        summary: "This site showcases portfolios and design tools.",
+        url: "https://www.example3.com",
+        imageUrl:
+            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
+    },
+    {
+        name: "Example Site 3",
+        tags: ["Portfolio", "Design Tools", "Technology"],
+        summary: "This site showcases portfolios and design tools.",
+        url: "https://www.example3.com",
+        imageUrl:
+            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
+    },
     // Add more websites as needed...
 ];
 
@@ -99,15 +133,38 @@ function createWebsiteCard(website) {
     return card;
 }
 
+// Track how many websites are currently displayed
+let displayedWebsitesCount = 0;
+const websitesPerPage = 6;
+
 // Function to render the gallery
 function renderGallery(filteredWebsites = websites) {
     const gallery = document.getElementById("gallery");
+    const loadMoreButton = document.getElementById("loadMoreButton");
+
     gallery.innerHTML = ""; // Clear current content
 
-    filteredWebsites.forEach((website) => {
-        const card = createWebsiteCard(website);
-        gallery.appendChild(card);
-    });
+    // Render only the number of websites based on the displayedWebsitesCount
+    for (let i = 0; i < displayedWebsitesCount; i++) {
+        const website = filteredWebsites[i];
+        if (website) {
+            const card = createWebsiteCard(website);
+            gallery.appendChild(card);
+        }
+    }
+
+    // Check if more websites are available to display
+    if (displayedWebsitesCount >= filteredWebsites.length) {
+        loadMoreButton.style.display = "none"; // Hide Load More button if no more websites are available
+    } else {
+        loadMoreButton.style.display = "block"; // Show Load More button
+    }
+}
+
+// Function to handle loading more websites
+function loadMoreWebsites() {
+    displayedWebsitesCount += websitesPerPage;
+    filterWebsites(); // Re-filter and re-render the gallery to reflect the new count
 }
 
 // Function to render filters dynamically in the menu
@@ -209,6 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchToggle = document.getElementById("searchToggle");
     const searchContainer = document.getElementById("searchContainer");
     const closeSearch = document.getElementById("closeSearch");
+    const loadMoreButton = document.getElementById("loadMoreButton");
 
     // Toggle the filter menu visibility when the Filter button is clicked
     filterButton.addEventListener("click", function (event) {
@@ -241,15 +299,16 @@ document.addEventListener("DOMContentLoaded", function () {
     searchContainer.addEventListener("click", function (event) {
         event.stopPropagation();
     });
+
+    // Load more websites when the Load More button is clicked
+    loadMoreButton.addEventListener("click", loadMoreWebsites);
+
+    // Initialize with the first set of websites
+    displayedWebsitesCount = websitesPerPage;
+    renderFilters(); // Render the filters
+    filterWebsites(); // Initially render websites
 });
 
 document
     .getElementById("searchInput")
     .addEventListener("input", filterWebsites);
-
-// Call the render functions on page load
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("searchContainer").style.display = "none"; // Ensure hidden initially
-    renderFilters(); // Render the filters
-    renderGallery(); // Initially render all websites
-});

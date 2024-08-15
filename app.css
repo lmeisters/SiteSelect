@@ -164,6 +164,19 @@ hr {
     cursor: pointer;
 }
 
+#loadMoreButton {
+    color: #202020;
+    font-size: 24px;
+    background: none;
+    border: none;
+    margin-top: 2rem;
+    padding: 0;
+    cursor: pointer;
+}
+#loadMoreButton:hover {
+    text-decoration: underline;
+}
+
 #filterButton:hover {
     text-decoration: underline;
 }
