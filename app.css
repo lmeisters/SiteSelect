@@ -1,31 +1,50 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-/* General body styling */
+/* Global CSS Variables */
+:root {
+    --font-primary: "Anton", sans-serif;
+    --font-secondary: "Inter", sans-serif;
+    --color-background: #f2f2f2;
+    --color-text: #202020;
+    --color-muted: #555;
+    --color-summary: #666;
+    --color-selection-bg: #202020;
+    --color-selection-text: #f2f2f2;
+    --color-border: #20202085;
+    --font-size-large: 1.5rem; /* 24px */
+    --font-size-medium: 1.5rem; /* 24px */
+    --font-size-small: 0.9rem; /* 14px */
+    --padding-small: 0.3125rem; /* 5px */
+    --padding-medium: 1.25rem; /* 20px */
+    --margin-small: 0.3125rem; /* 5px */
+    --margin-medium: 1.25rem; /* 20px */
+}
+
+/* General Body Styling */
 body {
-    font-family: "Inter", sans-serif;
-    background-color: #f2f2f2;
-    color: #202020;
+    font-family: var(--font-secondary);
+    background-color: var(--color-background);
+    color: var(--color-text);
     margin: 0;
 }
 
 .main {
     margin: 0rem;
-    padding: 20px;
+    padding: var(--padding-medium);
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 ::selection {
-    background: #202020;
-    color: #f2f2f2;
+    background: var(--color-selection-bg);
+    color: var(--color-selection-text);
 }
 
-/* Header styling */
+/* Header Styling */
 header {
     display: flex;
-    /* justify-content: space-between; */
-    padding: 0 1rem; /* top and bottom | left and right */
+    padding: 0 1rem; /* 16px left and right */
 }
 
 .header-headings {
@@ -33,65 +52,68 @@ header {
     align-items: center;
 }
 
-/* Link styling */
+/* Link Styling */
 a {
     text-decoration: none;
-    color: #202020;
-    font-size: 24px;
+    color: var(--color-text);
+    font-size: var(--font-size-large);
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-/* Heading styles */
+/* Heading Styles */
 h1 {
-    font-family: "Anton", sans-serif;
+    font-family: var(--font-primary);
     font-weight: 400;
-    font-style: normal;
-    font-size: 240px;
+    font-size: calc(
+        10rem + 5vw
+    ); /* Responsive font size based on viewport width */
     margin: 0;
-    /* text-decoration: underline; */
 }
 
 h2 {
-    margin-left: 9rem;
+    font-family: var(--font-secondary);
     font-weight: 200;
-    max-width: 440px;
+    font-size: calc(
+        0.5rem + 1vw
+    ); /* Responsive font size based on viewport width */
+    margin-left: calc(3rem + 2vw); /* Responsive margin */
+    max-width: 65%;
 }
 
-/* Image styling */
+/* Image Styling */
 img {
-    width: 100%; /* Make images responsive */
+    width: 100%;
     height: auto;
 }
 
+/* Horizontal Rule Styling */
 hr {
-    border: 0.5px solid #20202085;
-    margin-top: 8px;
+    border: 0.03125rem solid var(--color-border); /* 0.5px */
+    margin-top: 0.5rem; /* 8px */
 }
 
-/* Gallery grid styling */
+/* Gallery Grid Styling */
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Default to three equal columns */
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--margin-medium);
 }
 
-/* Website card styling */
+/* Website Card Styling */
 .website-card {
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
-/* Website card image styling */
 .website-card img {
     width: 100%;
     height: auto;
 }
 
-/* Website info styling */
 .website-info-block {
     display: flex;
     justify-content: space-between;
@@ -99,52 +121,45 @@ hr {
 }
 
 .website-name {
-    font-size: 1.5rem;
+    font-size: var(--font-size-medium);
     font-weight: 400;
     margin: 0;
 }
 
 .website-tags {
-    font-size: 0.9rem;
-    color: #555;
-    margin: 10px 0;
-}
-
-.tags {
-    color: #007bff;
+    font-size: var(--font-size-small);
+    color: var(--color-muted);
+    margin: 0.625rem 0; /* 10px */
 }
 
 .website-summary {
     font-size: 1rem;
-    color: #666;
-    margin: 10px 0;
+    color: var(--color-summary);
+    margin: 0.625rem 0; /* 10px */
 }
 
-/* Filter container styling */
+/* Filter Container Styling */
 #filter-container {
-    margin-bottom: 20px;
+    margin-bottom: var(--margin-medium);
 }
 
-/* Filter options */
 #tag-filters {
-    margin-top: 10px;
+    margin-top: 0.625rem; /* 10px */
 }
 
 #tag-filters label {
-    margin-right: 15px;
-    font-size: 0.9rem;
+    margin-right: 0.9375rem; /* 15px */
+    font-size: var(--font-size-small);
 }
 
+/* Filter Option Styling */
 .filter-option {
     cursor: pointer;
-    margin: 5px;
-    padding: 5px;
+    margin: var(--margin-small);
+    padding: var(--padding-small);
 }
 
-.filter-option:hover {
-    text-decoration: underline;
-}
-
+.filter-option:hover,
 .filter-option.active {
     text-decoration: underline;
 }
@@ -153,10 +168,12 @@ hr {
     display: none;
 }
 
-/* Filter button styling */
-#filterButton {
-    color: #202020;
-    font-size: 24px;
+/* Filter Button Styling */
+#filterButton,
+#loadMoreButton,
+#searchToggle {
+    color: var(--color-text);
+    font-size: var(--font-size-large);
     background: none;
     border: none;
     margin: 0;
@@ -164,107 +181,107 @@ hr {
     cursor: pointer;
 }
 
+#filterButton:hover,
+#loadMoreButton:hover,
+#searchToggle:hover {
+    text-decoration: underline;
+}
+
+/* Load More Button Styling */
 #loadMoreButton {
-    color: #202020;
-    font-size: 24px;
-    background: none;
-    border: none;
-    margin-top: 2rem;
-    padding: 0;
-    cursor: pointer;
-}
-#loadMoreButton:hover {
-    text-decoration: underline;
+    margin-top: 1.25rem; /* 20px */
 }
 
-#filterButton:hover {
-    text-decoration: underline;
-}
-
-/* Search bar styling */
+/* Search Bar Styling */
 #searchContainer {
     position: fixed;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: none; /* Hidden by default */
+    display: none;
     z-index: 1000;
 }
 
 #searchInput {
-    padding: 15px;
-    width: 400px;
-    border: 2px solid #ddd;
-    font-family: "Inter", sans-serif;
+    padding: 0.9375rem; /* 15px */
+    width: 25rem; /* 400px */
+    border: 0.125rem solid #ddd; /* 2px */
+    font-family: var(--font-secondary);
 }
 
-/* Search toggle button styling */
-#searchToggle {
-    cursor: pointer;
-    color: #202020;
-    font-size: 24px;
-    margin-left: 1rem;
-}
-
-#searchToggle:hover {
-    text-decoration: underline;
-}
-
-/* Search close button */
 #closeSearch {
     cursor: pointer;
     background-color: #fff;
-    color: #202020;
+    color: var(--color-text);
     position: absolute;
-    padding-left: 10px;
-    top: 15px;
-    right: 10px;
+    padding-left: 0.625rem; /* 10px */
+    top: 0.9375rem; /* 15px */
+    right: 0.625rem; /* 10px */
 }
 
 #closeSearch:hover {
     color: #ff0000;
 }
 
-/* Footer */
-
+/* Footer Styling */
 footer {
-    background-color: #202020;
+    background-color: var(--color-text);
     margin: 0;
     padding: 0;
-    color: #f2f2f2;
+    color: var(--color-selection-text);
+    height: 50vh;
+}
+
+.footer-text {
+    margin: 1rem 0 0 1rem;
+    font-size: 2.75rem; /* 44px */
 }
 
 nav {
     position: fixed;
     left: 90%;
-    margin-top: 16px;
+    margin-top: 1rem; /* 16px */
 }
 
 /* Responsive Styles */
 
-/* For tablets and large phones (min-width: 768px) */
+/* For tablets and large phones (max-width: 1024px) */
 @media (max-width: 1024px) {
     .gallery-container {
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        grid-template-columns: repeat(2, 1fr);
     }
 
     h1 {
-        font-size: 120px; /* Adjust heading size for smaller screens */
+        font-size: 7.5rem; /* 120px */
     }
 
     #searchInput {
-        width: 100%; /* Full width on smaller devices */
+        width: 100%;
     }
 }
 
-/* For mobile phones (min-width: 480px) */
+/* For mobile phones (max-width: 768px) */
 @media (max-width: 768px) {
+    header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    h2 {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    nav {
+        left: 70%;
+    }
+
     .gallery-container {
-        grid-template-columns: 1fr; /* Single column */
+        grid-template-columns: 1fr;
     }
 
     h1 {
-        font-size: 80px; /* Further adjust heading size for mobile screens */
+        font-size: 5rem; /* 80px */
     }
 
     #searchContainer {
