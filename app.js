@@ -1,116 +1,26 @@
-// Array of website data
-const websites = [
-    {
-        name: "Awwwards",
-        tags: ["Education", "SaaS", "Technology"],
-        summary:
-            "Get inspired by real landing page examples with full website screenshots",
-        url: "https://www.example1.com",
-        imageUrl:
-            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
-    },
-    {
-        name: "Example Site 2",
-        tags: ["eCommerce", "Health & Fitness", "Blog"],
-        summary:
-            "This is a summary of the second website. It offers insights into scientific research.",
-        url: "https://www.example2.com",
-        imageUrl:
-            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
-    },
-    {
-        name: "Example Site 3",
-        tags: ["Portfolio", "Design Tools", "Technology"],
-        summary: "This site showcases portfolios and design tools.",
-        url: "https://www.example3.com",
-        imageUrl:
-            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
-    },
-    {
-        name: "Awwwards",
-        tags: ["Education", "SaaS", "Technology"],
-        summary:
-            "Get inspired by real landing page examples with full website screenshots",
-        url: "https://www.example1.com",
-        imageUrl:
-            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
-    },
-    {
-        name: "Example Site 2",
-        tags: ["eCommerce", "Health & Fitness", "Blog"],
-        summary:
-            "This is a summary of the second website. It offers insights into scientific research.",
-        url: "https://www.example2.com",
-        imageUrl:
-            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
-    },
-    {
-        name: "Example Site 3",
-        tags: ["Portfolio", "Design Tools", "Technology"],
-        summary: "This site showcases portfolios and design tools.",
-        url: "https://www.example3.com",
-        imageUrl:
-            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
-    },
-    {
-        name: "Example Site 3",
-        tags: ["Portfolio", "Design Tools", "Technology"],
-        summary: "This site showcases portfolios and design tools.",
-        url: "https://www.example3.com",
-        imageUrl:
-            "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
-    },
-    // Add more websites as needed...
-];
+// Function to load data from the JSON file
+async function loadData() {
+    try {
+        const response = await fetch("websites.json");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error loading data:", error);
+        return [];
+    }
+}
 
-// Array of filter categories and options
-const filterOptions = [
-    {
-        category: "Tags",
-        options: [
-            "3D Websites",
-            "SaaS",
-            "eCommerce",
-            "Dark Mode",
-            "Agency",
-            "Portfolio",
-            "App",
-            "Artificial Intelligence",
-            "Beauty",
-            "Blockchain",
-            "Blog",
-            "Book",
-            "Bot",
-            "Business",
-            "CMS",
-            "Coming Soon",
-            "Community",
-            "Corporate",
-            "Creative",
-            "Cryptocurrency",
-            "Culture",
-            "Design Tools",
-            "No-Code Tools",
-            "Development Tools",
-            "Education",
-            "Entertainment",
-            "Event",
-            "Fashion",
-            "Finance",
-            "Foundry",
-            "Food & Drinks",
-            "Furniture & Interiors",
-            "Gradient Style",
-            "Health & Fitness",
-            "Hosting",
-            "Illustration",
-            "Insurance",
-            "Isometric",
-            "Magazine",
-        ],
-    },
-    // Add more filter categories and options here as needed...
-];
+// Function to load filter options from the JSON file
+async function loadFilters() {
+    try {
+        const response = await fetch("filters.json");
+        const filters = await response.json();
+        return filters;
+    } catch (error) {
+        console.error("Error loading filters:", error);
+        return [];
+    }
+}
 
 // Function to create a website card
 function createWebsiteCard(website) {
@@ -123,8 +33,10 @@ function createWebsiteCard(website) {
         <div class="website-info">
             <hr />
             <div class="website-info-block">
-            <h3 class="website-name">${website.name}</h3>
-            <p class="website-tags"><span>${website.tags.join(", ")}</span></p>
+                <h3 class="website-name">${website.name}</h3>
+                <p class="website-tags"><span>${website.tags.join(
+                    ", "
+                )}</span></p>
             </div>
             <hr />
             <p class="website-summary">${website.summary}</p>
@@ -136,6 +48,9 @@ function createWebsiteCard(website) {
 // Track how many websites are currently displayed
 let displayedWebsitesCount = 0;
 const websitesPerPage = 6;
+let websites = [];
+let filterOptions = [];
+const selectedFilters = new Set();
 
 // Function to render the gallery
 function renderGallery(filteredWebsites = websites) {
@@ -187,9 +102,6 @@ function renderFilters() {
         filterMenu.appendChild(categoryDiv);
     });
 }
-
-// Store selected filters
-const selectedFilters = new Set();
 
 // Function to toggle the underline of filter options
 function toggleFilter(option) {
@@ -249,10 +161,7 @@ function toggleSearchBar() {
     const searchContainer = document.getElementById("searchContainer");
     const searchInput = document.getElementById("searchInput");
 
-    if (
-        searchContainer.style.display === "block" ||
-        searchContainer.style.display === ""
-    ) {
+    if (searchContainer.style.display === "block") {
         searchContainer.style.display = "none";
     } else {
         searchContainer.style.display = "block";
@@ -261,12 +170,21 @@ function toggleSearchBar() {
 }
 
 // Event listeners
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const filterButton = document.getElementById("filterButton");
     const searchToggle = document.getElementById("searchToggle");
     const searchContainer = document.getElementById("searchContainer");
     const closeSearch = document.getElementById("closeSearch");
     const loadMoreButton = document.getElementById("loadMoreButton");
+
+    // Load data and filters
+    websites = await loadData();
+    filterOptions = await loadFilters();
+
+    // Initialize with the first set of websites
+    displayedWebsitesCount = websitesPerPage;
+    renderFilters(); // Render the filters
+    filterWebsites(); // Initially render websites
 
     // Toggle the filter menu visibility when the Filter button is clicked
     filterButton.addEventListener("click", function (event) {
@@ -303,12 +221,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load more websites when the Load More button is clicked
     loadMoreButton.addEventListener("click", loadMoreWebsites);
 
-    // Initialize with the first set of websites
-    displayedWebsitesCount = websitesPerPage;
-    renderFilters(); // Render the filters
-    filterWebsites(); // Initially render websites
+    // Update search filter as the input changes
+    document
+        .getElementById("searchInput")
+        .addEventListener("input", filterWebsites);
 });
-
-document
-    .getElementById("searchInput")
-    .addEventListener("input", filterWebsites);

@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Awwwards",
+        "tags": ["Education", "SaaS", "Technology"],
+        "summary": "Get inspired by real landing page examples with full website screenshots",
+        "url": "https://www.example1.com",
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+    },
+    {
+        "name": "Example Site 2",
+        "tags": ["eCommerce", "Health & Fitness", "Blog"],
+        "summary": "This is a summary of the second website. It offers insights into scientific research.",
+        "url": "https://www.example2.com",
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+    },
+    {
+        "name": "Example Site 3",
+        "tags": ["Portfolio", "Design Tools", "Technology"],
+        "summary": "This site showcases portfolios and design tools.",
+        "url": "https://www.example3.com",
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+    },
+    {
+        "name": "Awwwards",
+        "tags": ["Education", "SaaS", "Technology"],
+        "summary": "Get inspired by real landing page examples with full website screenshots",
+        "url": "https://www.example1.com",
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+    },
+    {
+        "name": "Example Site 2",
+        "tags": ["eCommerce", "Health & Fitness", "Blog"],
+        "summary": "This is a summary of the second website. It offers insights into scientific research.",
+        "url": "https://www.example2.com",
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+    },
+    {
+        "name": "Example Site 3",
+        "tags": ["Portfolio", "Design Tools", "Technology"],
+        "summary": "This site showcases portfolios and design tools.",
+        "url": "https://www.example3.com",
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+    },
+    {
+        "name": "Awwwards",
+        "tags": ["Education", "SaaS", "Technology"],
+        "summary": "Get inspired by real landing page examples with full website screenshots",
+        "url": "https://www.example1.com",
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+    },
+    {
+        "name": "Example Site 2",
+        "tags": ["eCommerce", "Health & Fitness", "Blog"],
+        "summary": "This is a summary of the second website. It offers insights into scientific research.",
+        "url": "https://www.example2.com",
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+    },
+    {
+        "name": "Example Site 3",
+        "tags": ["Portfolio", "Design Tools", "Technology"],
+        "summary": "This site showcases portfolios and design tools.",
+        "url": "https://www.example3.com",
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+    }
+]
