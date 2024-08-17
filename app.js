@@ -2,8 +2,7 @@
 async function loadData() {
     try {
         const response = await fetch("websites.json");
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error("Error loading data:", error);
         return [];
@@ -14,8 +13,7 @@ async function loadData() {
 async function loadFilters() {
     try {
         const response = await fetch("filters.json");
-        const filters = await response.json();
-        return filters;
+        return await response.json();
     } catch (error) {
         console.error("Error loading filters:", error);
         return [];
@@ -26,8 +24,6 @@ async function loadFilters() {
 function createWebsiteCard(website) {
     const card = document.createElement("div");
     card.className = "website-card";
-
-    // Get the top 3 tags
     const topTags = website.tags.slice(0, 3);
 
     card.innerHTML = `
@@ -47,7 +43,7 @@ function createWebsiteCard(website) {
     return card;
 }
 
-// Track how many websites are currently displayed
+// Initialize variables
 let displayedWebsitesCount = 0;
 const websitesPerPage = 6;
 let websites = [];
@@ -59,48 +55,37 @@ function renderGallery(filteredWebsites = websites) {
     const gallery = document.getElementById("gallery");
     const loadMoreButton = document.getElementById("loadMoreButton");
 
-    gallery.innerHTML = ""; // Clear current content
-
-    // Render only the number of websites based on the displayedWebsitesCount
+    gallery.innerHTML = "";
     for (let i = 0; i < displayedWebsitesCount; i++) {
         const website = filteredWebsites[i];
         if (website) {
-            const card = createWebsiteCard(website);
-            gallery.appendChild(card);
+            gallery.appendChild(createWebsiteCard(website));
         }
     }
 
-    // Check if more websites are available to display
-    if (displayedWebsitesCount >= filteredWebsites.length) {
-        loadMoreButton.style.display = "none"; // Hide Load More button if no more websites are available
-    } else {
-        loadMoreButton.style.display = "block"; // Show Load More button
-    }
+    loadMoreButton.style.display =
+        displayedWebsitesCount >= filteredWebsites.length ? "none" : "block";
 }
 
 // Function to handle loading more websites
 function loadMoreWebsites() {
     displayedWebsitesCount += websitesPerPage;
-    filterWebsites(); // Re-filter and re-render the gallery to reflect the new count
+    filterWebsites();
 }
 
 // Function to render filters dynamically in the menu
 function renderFilters() {
     const filterMenu = document.getElementById("filterMenu");
-    filterMenu.innerHTML = ""; // Clear existing filters
+    filterMenu.innerHTML = "";
 
     filterOptions.forEach((filterCategory) => {
         const categoryDiv = document.createElement("div");
         categoryDiv.className = "filter-category";
-
-        // Add category title
         const categoryTitle = document.createElement("h4");
         categoryTitle.textContent = filterCategory.category;
         categoryDiv.appendChild(categoryTitle);
 
-        // Render only the first 20 tags
-        const visibleTags = filterCategory.options.slice(0, 20);
-        visibleTags.forEach((tag) => {
+        filterCategory.options.slice(0, 20).forEach((tag) => {
             const span = document.createElement("span");
             span.textContent = tag;
             span.className = "filter-tag";
@@ -112,20 +97,17 @@ function renderFilters() {
     });
 }
 
-// Function to toggle the underline of filter tags
+// Function to toggle filter state and update display
 function toggleFilter(tag) {
     const filterMenu = document.getElementById("filterMenu");
     const allTags = filterMenu.querySelectorAll(".filter-tag");
 
     allTags.forEach((el) => {
         if (el.textContent === tag) {
-            if (el.classList.contains("active")) {
-                el.classList.remove("active");
-                selectedFilters.delete(tag);
-            } else {
-                el.classList.add("active");
-                selectedFilters.add(tag);
-            }
+            el.classList.toggle("active");
+            el.classList.contains("active")
+                ? selectedFilters.add(tag)
+                : selectedFilters.delete(tag);
         }
     });
 
@@ -137,18 +119,15 @@ function filterWebsites() {
     const searchQuery = document
         .getElementById("searchInput")
         .value.toLowerCase();
-
     const filteredWebsites = websites.filter((website) => {
-        // Check if the search query matches the name, summary, or tags
         const matchesSearchQuery =
             website.name.toLowerCase().includes(searchQuery) ||
             website.summary.toLowerCase().includes(searchQuery) ||
             website.tags.some((tag) => tag.toLowerCase().includes(searchQuery));
 
-        // Check matches for all selected filters
-        const matchesFilters = [...selectedFilters].every((filter) => {
-            return website.tags.includes(filter);
-        });
+        const matchesFilters = [...selectedFilters].every((filter) =>
+            website.tags.includes(filter)
+        );
 
         return (
             matchesSearchQuery && (selectedFilters.size === 0 || matchesFilters)
@@ -168,70 +147,113 @@ function toggleFilterMenu() {
 // Function to toggle search bar visibility
 function toggleSearchBar() {
     const searchContainer = document.getElementById("searchContainer");
-    const searchInput = document.getElementById("searchInput");
+    searchContainer.style.display =
+        searchContainer.style.display === "block" ? "none" : "block";
+    if (searchContainer.style.display === "block")
+        document.getElementById("searchInput").focus();
+}
 
-    if (searchContainer.style.display === "block") {
-        searchContainer.style.display = "none";
-    } else {
-        searchContainer.style.display = "block";
-        searchInput.focus(); // Automatically focus on the search input
-    }
+// Function to update the active state of the filter buttons
+function updateActiveButton(activeButton) {
+    document
+        .querySelectorAll(".filter-tag")
+        .forEach((button) => button.classList.remove("active"));
+    activeButton.classList.add("active");
+}
+
+// Function to update active button state
+function handleActiveButtonUpdate(option) {
+    const allButton = document.querySelector(".filter-tag[textContent='All']");
+    const selectedButton = document.querySelector(
+        `.filter-tag[textContent="${option}"]`
+    );
+    if (option !== "All") allButton.classList.remove("active");
+    updateActiveButton(selectedButton || allButton);
 }
 
 // Event listeners
 document.addEventListener("DOMContentLoaded", async function () {
     const filterButton = document.getElementById("filterButton");
     const searchToggle = document.getElementById("searchToggle");
-    const searchContainer = document.getElementById("searchContainer");
     const closeSearch = document.getElementById("closeSearch");
     const loadMoreButton = document.getElementById("loadMoreButton");
 
-    // Load data and filters
     websites = await loadData();
     filterOptions = await loadFilters();
 
-    // Initialize with the first set of websites
     displayedWebsitesCount = websitesPerPage;
-    renderFilters(); // Render the filters
-    filterWebsites(); // Initially render websites
+    renderFilters();
+    filterWebsites();
 
-    // Toggle the filter menu visibility when the Filter button is clicked
     filterButton.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevents the click from closing the filter menu immediately
-        toggleFilterMenu(); // Toggle the filter menu
+        event.stopPropagation();
+        toggleFilterMenu();
     });
 
-    // Toggle the search bar visibility when the Search button is clicked
     searchToggle.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevents the click from closing the search immediately
-        toggleSearchBar(); // Toggle the search bar
+        event.stopPropagation();
+        toggleSearchBar();
     });
 
-    // Close the search bar when the close button is clicked
     closeSearch.addEventListener("click", function () {
-        searchContainer.style.display = "none";
+        document.getElementById("searchContainer").style.display = "none";
     });
 
-    // Close the search bar when clicking outside of it
     document.addEventListener("click", function (event) {
         if (
-            !searchContainer.contains(event.target) &&
+            !document
+                .getElementById("searchContainer")
+                .contains(event.target) &&
             event.target !== searchToggle
         ) {
-            searchContainer.style.display = "none";
+            document.getElementById("searchContainer").style.display = "none";
         }
     });
 
-    // Prevent clicks inside the searchContainer from closing it
-    searchContainer.addEventListener("click", function (event) {
-        event.stopPropagation();
-    });
+    document
+        .getElementById("searchContainer")
+        .addEventListener("click", function (event) {
+            event.stopPropagation();
+        });
 
-    // Load more websites when the Load More button is clicked
     loadMoreButton.addEventListener("click", loadMoreWebsites);
-
-    // Update search filter as the input changes
     document
         .getElementById("searchInput")
         .addEventListener("input", filterWebsites);
+
+    // Calculate and display the most common tags
+    const tagCount = {};
+    websites.forEach((website) => {
+        website.tags.forEach((tag) => {
+            tagCount[tag] = (tagCount[tag] || 0) + 1;
+        });
+    });
+
+    const topTags = Object.keys(tagCount)
+        .sort((a, b) => tagCount[b] - tagCount[a])
+        .slice(0, 7);
+    const commonTagsContainer = document.getElementById("commonTagsContainer");
+
+    const allButton = document.createElement("button");
+    allButton.className = "filter-tag active";
+    allButton.textContent = "All";
+    allButton.addEventListener("click", () => {
+        selectedFilters.clear();
+        handleActiveButtonUpdate("All");
+        filterWebsites();
+    });
+    commonTagsContainer.appendChild(allButton);
+
+    topTags.forEach((tag) => {
+        const tagButton = document.createElement("button");
+        tagButton.className = "filter-tag";
+        tagButton.textContent = tag;
+        tagButton.addEventListener("click", () => {
+            toggleFilter(tag);
+            handleActiveButtonUpdate(tag);
+        });
+        commonTagsContainer.appendChild(tagButton);
+    });
+
+    filterWebsites();
 });

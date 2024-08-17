@@ -78,10 +78,10 @@ h2 {
     font-family: var(--font-secondary);
     font-weight: 200;
     font-size: calc(
-        0.5rem + 1vw
+        0.4rem + 1vw
     ); /* Responsive font size based on viewport width */
     margin-left: calc(3rem + 2vw); /* Responsive margin */
-    max-width: 65%;
+    max-width: 85%;
 }
 
 h4 {
@@ -203,10 +203,17 @@ hr {
     justify-content: space-between;
 }
 
+.common-tags {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
 /* Filter Button Styling */
 #filterButton,
 #loadMoreButton,
-#searchToggle {
+#searchToggle,
+.filter-tag {
     color: var(--color-text);
     font-size: var(--font-size-large);
     background: none;
@@ -218,7 +225,12 @@ hr {
 
 #filterButton:hover,
 #loadMoreButton:hover,
-#searchToggle:hover {
+#searchToggle:hover,
+.filter-tag:hover {
+    text-decoration: underline;
+}
+
+.filter-tag.active {
     text-decoration: underline;
 }
 
@@ -274,7 +286,7 @@ footer {
 
 nav {
     position: fixed;
-    left: 90%;
+    left: 94vw;
     margin-top: 1rem; /* 16px */
 }
 
