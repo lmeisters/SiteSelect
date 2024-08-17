@@ -21,7 +21,13 @@
     --margin-medium: 1.5rem; /* 24px */
 }
 
-/* General Body Styling */
+/* General Styling */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--font-secondary);
     background-color: var(--color-background);
@@ -35,6 +41,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    min-height: 100vh;
+    background: var(--color-background);
+    position: relative;
+    z-index: 1;
 }
 
 ::selection {
@@ -80,8 +91,8 @@ h2 {
     font-size: calc(
         0.4rem + 1vw
     ); /* Responsive font size based on viewport width */
-    margin-left: calc(3rem + 2vw); /* Responsive margin */
-    max-width: 85%;
+    margin-left: calc(5rem + 2vw); /* Responsive margin */
+    max-width: 75%;
 }
 
 h4 {
@@ -166,17 +177,6 @@ hr {
 }
 
 /* Filter Option Styling */
-.filter-tag {
-    cursor: pointer;
-    margin-bottom: var(--margin-small);
-    font-size: 20px;
-}
-
-.filter-tag:hover,
-.filter-tag.active {
-    text-decoration: underline;
-}
-
 #filterMenu {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -221,15 +221,16 @@ hr {
     margin: 0;
     padding: 0;
     cursor: pointer;
+    /* font-size: 20px; */
 }
 
 #filterButton:hover,
 #loadMoreButton:hover,
-#searchToggle:hover,
-.filter-tag:hover {
+#searchToggle:hover {
     text-decoration: underline;
 }
 
+.filter-tag:hover,
 .filter-tag.active {
     text-decoration: underline;
 }
@@ -274,9 +275,13 @@ hr {
 footer {
     background-color: var(--color-text);
     margin: 0;
-    padding: 0;
+    padding: var(--padding-medium);
     color: var(--color-selection-text);
-    /* height: 50vh; */
+
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .footer-text {
@@ -293,7 +298,7 @@ nav {
 h3 {
     font-size: var(--font-size-larger);
     font-weight: 400;
-    margin: 1rem 0 0 1rem;
+    margin: 1rem 0 0 0;
 }
 
 p {
@@ -304,7 +309,7 @@ p {
     font-size: var(--font-size-larger);
     font-weight: 600;
     color: var(--color-background);
-    margin: 0 0 0 1rem; /* top | right | bottom | left */
+    /* margin: 0 0 0 1rem; top | right | bottom | left */
 }
 
 /* Responsive Styles */
