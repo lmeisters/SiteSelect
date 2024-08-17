@@ -26,6 +26,10 @@ async function loadFilters() {
 function createWebsiteCard(website) {
     const card = document.createElement("div");
     card.className = "website-card";
+
+    // Get the top 3 tags
+    const topTags = website.tags.slice(0, 3);
+
     card.innerHTML = `
         <a href="${website.url}" target="_blank" class="website-image-link">
             <img src="${website.imageUrl}" alt="${website.name} Thumbnail">
@@ -34,9 +38,7 @@ function createWebsiteCard(website) {
             <hr />
             <div class="website-info-block">
                 <h3 class="website-name">${website.name}</h3>
-                <p class="website-tags"><span>${website.tags.join(
-                    ", "
-                )}</span></p>
+                <p class="website-tags"><span>${topTags.join(", ")}</span></p>
             </div>
             <hr />
             <p class="website-summary">${website.summary}</p>
@@ -91,11 +93,18 @@ function renderFilters() {
         const categoryDiv = document.createElement("div");
         categoryDiv.className = "filter-category";
 
-        filterCategory.options.forEach((option) => {
+        // Add category title
+        const categoryTitle = document.createElement("h4");
+        categoryTitle.textContent = filterCategory.category;
+        categoryDiv.appendChild(categoryTitle);
+
+        // Render only the first 20 tags
+        const visibleTags = filterCategory.options.slice(0, 20);
+        visibleTags.forEach((tag) => {
             const span = document.createElement("span");
-            span.textContent = option;
-            span.className = "filter-option";
-            span.addEventListener("click", () => toggleFilter(option));
+            span.textContent = tag;
+            span.className = "filter-tag";
+            span.addEventListener("click", () => toggleFilter(tag));
             categoryDiv.appendChild(span);
         });
 
@@ -103,19 +112,19 @@ function renderFilters() {
     });
 }
 
-// Function to toggle the underline of filter options
-function toggleFilter(option) {
+// Function to toggle the underline of filter tags
+function toggleFilter(tag) {
     const filterMenu = document.getElementById("filterMenu");
-    const allOptions = filterMenu.querySelectorAll(".filter-option");
+    const allTags = filterMenu.querySelectorAll(".filter-tag");
 
-    allOptions.forEach((el) => {
-        if (el.textContent === option) {
+    allTags.forEach((el) => {
+        if (el.textContent === tag) {
             if (el.classList.contains("active")) {
                 el.classList.remove("active");
-                selectedFilters.delete(option);
+                selectedFilters.delete(tag);
             } else {
                 el.classList.add("active");
-                selectedFilters.add(option);
+                selectedFilters.add(tag);
             }
         }
     });

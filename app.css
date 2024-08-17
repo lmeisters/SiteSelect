@@ -11,6 +11,7 @@
     --color-selection-bg: #202020;
     --color-selection-text: #f2f2f2;
     --color-border: #20202085;
+    --font-size-larger: 2.5rem;
     --font-size-large: 1.5rem; /* 24px */
     --font-size-medium: 1.5rem; /* 24px */
     --font-size-small: 0.9rem; /* 14px */
@@ -153,14 +154,14 @@ hr {
 }
 
 /* Filter Option Styling */
-.filter-option {
+.filter-tag {
     cursor: pointer;
     margin: var(--margin-small);
     padding: var(--padding-small);
 }
 
-.filter-option:hover,
-.filter-option.active {
+.filter-tag:hover,
+.filter-tag.active {
     text-decoration: underline;
 }
 
@@ -229,7 +230,7 @@ footer {
     margin: 0;
     padding: 0;
     color: var(--color-selection-text);
-    height: 50vh;
+    /* height: 50vh; */
 }
 
 .footer-text {
@@ -241,6 +242,23 @@ nav {
     position: fixed;
     left: 90%;
     margin-top: 1rem; /* 16px */
+}
+
+h3 {
+    font-size: var(--font-size-larger);
+    font-weight: 400;
+    margin: 1rem 0 0 1rem;
+}
+
+p {
+    margin: 0;
+}
+
+.email {
+    font-size: var(--font-size-larger);
+    font-weight: 600;
+    color: var(--color-background);
+    margin: 0 0 0 1rem; /* top | right | bottom | left */
 }
 
 /* Responsive Styles */

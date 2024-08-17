@@ -4,6 +4,24 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="app.css" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="favicon/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="favicon/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
         <title>SiteSelect</title>
     </head>
     <body>
@@ -24,8 +42,6 @@
             </nav>
         </header>
 
-        <hr />
-
         <section class="main">
             <div id="searchContainer">
                 <input
@@ -41,6 +57,7 @@
 
                 <div id="filterMenu" style="display: none"></div>
                 <!-- Filters will be dynamically generated here -->
+                <hr />
             </div>
 
             <div id="gallery" class="gallery-container">
@@ -54,31 +71,17 @@
             <div class="footer-content">
                 <!-- Contact Information -->
                 <div class="footer-section contact-info">
-                    <h3>Contact Us</h3>
+                    <h3>Want to submit a website?</h3>
                     <p>
-                        Email:
-                        <a href="mailto:info@site-select.com"
-                            >info@site-select.com</a
+                        <a class="email" href="mailto:siteselect@gmail.com"
+                            >siteselect@gmail.com</a
                         >
                     </p>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="footer-section quick-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#submit">Submit a Website</a></li>
-                        <li><a href="#privacy-policy">Privacy Policy</a></li>
-                        <li>
-                            <a href="#terms-of-service">Terms of Service</a>
-                        </li>
-                    </ul>
-                </div>
-
                 <!-- Copyright Information -->
                 <div class="footer-section copyright">
-                    <p>&copy; 2024 SiteSelect. All rights reserved.</p>
+                    <h1 class="h1-footer">SiteSelect</h1>
                 </div>
             </div>
         </footer>

@@ -1,65 +1,76 @@
 [
     {
         "name": "Awwwards",
-        "tags": ["Education", "SaaS", "Technology"],
-        "summary": "Get inspired by real landing page examples with full website screenshots",
-        "url": "https://www.example1.com",
+        "tags": ["Education", "SaaS", "Technology", "Portfolio", "Folio"],
+        "summary": "The awards that recognize the talent and effort of the best web designers, developers and agencies in the world.",
+        "url": "https://www.awwwards.com/",
         "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
     },
     {
-        "name": "Example Site 2",
+        "name": "Godly",
         "tags": ["eCommerce", "Health & Fitness", "Blog"],
-        "summary": "This is a summary of the second website. It offers insights into scientific research.",
-        "url": "https://www.example2.com",
+        "summary": "Astronomically good web design inspiration. Only the best of the best.",
+        "url": "https://godly.website/",
         "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
     },
     {
-        "name": "Example Site 3",
+        "name": "Browsing Mode",
         "tags": ["Portfolio", "Design Tools", "Technology"],
-        "summary": "This site showcases portfolios and design tools.",
-        "url": "https://www.example3.com",
+        "summary": "Browse a curated collection of websites from the internet, thoughtfully picked for their design and functionality..",
+        "url": "https://browsingmode.com/",
         "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
     },
     {
-        "name": "Awwwards",
+        "name": "Site Inspire",
         "tags": ["Education", "SaaS", "Technology"],
-        "summary": "Get inspired by real landing page examples with full website screenshots",
-        "url": "https://www.example1.com",
+        "summary": "Siteinspire is a showcase of the finest web design.",
+        "url": "https://www.siteinspire.com/",
         "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
     },
     {
-        "name": "Example Site 2",
+        "name": "Minimal Gallery",
         "tags": ["eCommerce", "Health & Fitness", "Blog"],
-        "summary": "This is a summary of the second website. It offers insights into scientific research.",
-        "url": "https://www.example2.com",
+        "summary": "For the love of beautiful & functional websites.",
+        "url": "https://minimal.gallery/",
         "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
     },
     {
-        "name": "Example Site 3",
+        "name": "Storefront",
         "tags": ["Portfolio", "Design Tools", "Technology"],
-        "summary": "This site showcases portfolios and design tools.",
-        "url": "https://www.example3.com",
+        "summary": "Curates the best digital storefronts on the internet.",
+        "url": "https://www.storefront.design/",
         "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
     },
     {
-        "name": "Awwwards",
-        "tags": ["Education", "SaaS", "Technology"],
-        "summary": "Get inspired by real landing page examples with full website screenshots",
-        "url": "https://www.example1.com",
+        "name": "Lapa Ninja",
+        "tags": ["3D Websites", "SaaS", "eCommerce", "Dark Mode", "Agency", "Portfolio", "App", 
+                "Artificial Intelligence", "Beauty", "Blockchain", "Blog", "Book", "Bot", 
+                "Business", "CMS", "Coming Soon", "Community", "Corporate", "Creative", 
+                "Cryptocurrency", "Culture", "Design Tools", "No-Code Tools", "Development Tools", 
+                "Education", "Entertainment", "Event", "Fashion", "Finance", "Foundry", 
+                "Food & Drinks", "Furniture & Interiors", "Gradient Style", "Health & Fitness", 
+                "Hosting", "Illustration", "Insurance", "Isometric", "Magazine", "Minimal", 
+                "Miscellaneous", "NFTs", "Outdoors & Travel", "Photography", "Product Management", 
+                "Productivity", "Prototype", "Real Estate", "Retro Style", "Software", "Studio", 
+                "Technology", "Typography", "Ventures", "Web3", "Aqua", "Black", "Blue", "Brown", "Gray", "Green", "Maroon", "Multiple Colors", 
+                "Navy", "Olive", "Orange", "Pink", "Purple", "Red", "Teal", "Ultra Violet", 
+                "White", "Yellow"],
+        "summary": "Features the best landing page designs. Get inspired by real landing page examples with full website screenshots. Enjoy unlimited access to website categories, old versions, filter & search results.",
+        "url": "https://www.lapa.ninja/",
         "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
     },
     {
-        "name": "Example Site 2",
+        "name": "Land-book",
         "tags": ["eCommerce", "Health & Fitness", "Blog"],
-        "summary": "This is a summary of the second website. It offers insights into scientific research.",
-        "url": "https://www.example2.com",
+        "summary": "Find the best hand-picked website design inspiration. We’re a curated website design gallery for Creatives, updated daily.",
+        "url": "https://land-book.com/",
         "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
     },
     {
-        "name": "Example Site 3",
+        "name": "Landingfolio",
         "tags": ["Portfolio", "Design Tools", "Technology"],
-        "summary": "This site showcases portfolios and design tools.",
-        "url": "https://www.example3.com",
+        "summary": "Landingfolio features the best landing page designs on the web. Get inspiration from real landing page examples, curated by us to ensure the highest quality",
+        "url": "https://www.landingfolio.com/",
         "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
     }
 ]

@@ -1,46 +1,19 @@
 [
     {
-        "category": "Tags",
-        "options": [
-            "3D Websites",
-            "SaaS",
-            "eCommerce",
-            "Dark Mode",
-            "Agency",
-            "Portfolio",
-            "App",
-            "Artificial Intelligence",
-            "Beauty",
-            "Blockchain",
-            "Blog",
-            "Book",
-            "Bot",
-            "Business",
-            "CMS",
-            "Coming Soon",
-            "Community",
-            "Corporate",
-            "Creative",
-            "Cryptocurrency",
-            "Culture",
-            "Design Tools",
-            "No-Code Tools",
-            "Development Tools",
-            "Education",
-            "Entertainment",
-            "Event",
-            "Fashion",
-            "Finance",
-            "Foundry",
-            "Food & Drinks",
-            "Furniture & Interiors",
-            "Gradient Style",
-            "Health & Fitness",
-            "Hosting",
-            "Illustration",
-            "Insurance",
-            "Isometric",
-            "Magazine"
-        ]
+        "category": "Industry/Business Type",
+        "options": ["SaaS", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "blah"]
+    },
+    {
+        "category": "Design Style",
+        "options": ["Minimalistic", "Dark Mode", "Gradient Style", "Isometric"]
+    },
+    {
+        "category": "Functionality",
+        "options": ["CMS", "No-Code Tools", "App", "Bot", "AI-Powered"]
+    },
+    {
+        "category": "Purpose",
+        "options": ["Landing Pages", "Blogs", "Coming Soon", "Event"]
     }
+  
 ]
