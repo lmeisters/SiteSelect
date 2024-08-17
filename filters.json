@@ -1,18 +1,22 @@
 [
     {
-        "category": "Industry/Business Type",
+        "category": "Type",
         "options": ["SaaS", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "blah"]
     },
     {
-        "category": "Design Style",
+        "category": "Style",
         "options": ["Minimalistic", "Dark Mode", "Gradient Style", "Isometric"]
     },
     {
-        "category": "Functionality",
+        "category": "Platform",
         "options": ["CMS", "No-Code Tools", "App", "Bot", "AI-Powered"]
     },
     {
-        "category": "Purpose",
+        "category": "Color",
+        "options": ["Landing Pages", "Blogs", "Coming Soon", "Event"]
+    },
+    {
+        "category": "Industry",
         "options": ["Landing Pages", "Blogs", "Coming Soon", "Event"]
     }
   

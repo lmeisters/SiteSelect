@@ -162,7 +162,7 @@ function filterWebsites() {
 function toggleFilterMenu() {
     const filterMenu = document.getElementById("filterMenu");
     filterMenu.style.display =
-        filterMenu.style.display === "none" ? "block" : "none";
+        filterMenu.style.display === "none" ? "inline-flex" : "none";
 }
 
 // Function to toggle search bar visibility

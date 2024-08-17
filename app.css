@@ -14,11 +14,11 @@
     --font-size-larger: 2.5rem;
     --font-size-large: 1.5rem; /* 24px */
     --font-size-medium: 1.5rem; /* 24px */
-    --font-size-small: 0.9rem; /* 14px */
-    --padding-small: 0.3125rem; /* 5px */
-    --padding-medium: 1.25rem; /* 20px */
-    --margin-small: 0.3125rem; /* 5px */
-    --margin-medium: 1.25rem; /* 20px */
+    --font-size-small: 1rem; /* 16px */
+    --padding-small: 0.5rem; /* 8px */
+    --padding-medium: 1.5rem; /* 24px */
+    --margin-small: 0.5rem; /* 8px */
+    --margin-medium: 1.5rem; /* 24px */
 }
 
 /* General Body Styling */
@@ -84,6 +84,14 @@ h2 {
     max-width: 65%;
 }
 
+h4 {
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: var(--margin-small);
+    margin-bottom: var(--margin-small);
+}
+
 /* Image Styling */
 img {
     width: 100%;
@@ -141,6 +149,10 @@ hr {
 
 /* Filter Container Styling */
 #filter-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
     margin-bottom: var(--margin-medium);
 }
 
@@ -156,8 +168,8 @@ hr {
 /* Filter Option Styling */
 .filter-tag {
     cursor: pointer;
-    margin: var(--margin-small);
-    padding: var(--padding-small);
+    margin-bottom: var(--margin-small);
+    font-size: 20px;
 }
 
 .filter-tag:hover,
@@ -166,7 +178,29 @@ hr {
 }
 
 #filterMenu {
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 56px;
+    align-items: start;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.filter-category {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+    margin-bottom: 20px;
+    align-items: start;
+}
+
+.filter-category h4 {
+    grid-column: 1 / -1;
+}
+
+.filter-container-buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Filter Button Styling */
