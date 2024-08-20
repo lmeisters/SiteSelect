@@ -25,10 +25,10 @@
         <title>SiteSelect</title>
     </head>
     <body>
+        <nav>
+            <span id="searchToggle">Search</span>
+        </nav>
         <section class="main">
-            <nav>
-                <span id="searchToggle">Search</span>
-            </nav>
             <header>
                 <h1>SiteSelect</h1>
                 <div class="header-headings">
@@ -70,6 +70,14 @@
             </div>
 
             <button id="loadMoreButton">Load more</button>
+
+            <!-- Error message container -->
+            <div id="error-message" style="display: none">
+                <p>
+                    No results found. Please try a different filter or search
+                    term.
+                </p>
+            </div>
         </section>
 
         <footer>

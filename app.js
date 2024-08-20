@@ -115,19 +115,21 @@ function toggleFilter(tag) {
 }
 
 // Function to filter websites by tags and search input
+// Function to filter websites by tags and search input
 function filterWebsites() {
     const searchQuery = document
         .getElementById("searchInput")
         .value.toLowerCase();
+
     const filteredWebsites = websites.filter((website) => {
         const matchesSearchQuery =
             website.name.toLowerCase().includes(searchQuery) ||
             website.summary.toLowerCase().includes(searchQuery) ||
             website.tags.some((tag) => tag.toLowerCase().includes(searchQuery));
 
-        const matchesFilters = [...selectedFilters].every((filter) =>
-            website.tags.includes(filter)
-        );
+        const matchesFilters = [...selectedFilters].every((filter) => {
+            return website.tags.includes(filter);
+        });
 
         return (
             matchesSearchQuery && (selectedFilters.size === 0 || matchesFilters)
@@ -135,6 +137,14 @@ function filterWebsites() {
     });
 
     renderGallery(filteredWebsites);
+
+    // Show or hide the error message based on the number of filtered results
+    const errorMessage = document.getElementById("error-message");
+    if (filteredWebsites.length === 0) {
+        errorMessage.style.display = "block";
+    } else {
+        errorMessage.style.display = "none";
+    }
 }
 
 // Function to toggle the visibility of the filter menu

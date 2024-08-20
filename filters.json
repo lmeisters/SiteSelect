@@ -1,23 +1,109 @@
 [
     {
         "category": "Type",
-        "options": ["SaaS", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "eCommerce", "Agency", "Portfolio", "Corporate", "blah"]
+        "options": ["Agencies & Consultancies", "Agency", "Annual Reports", "App", "Application / Software", "Advertising", "Architecture", 
+        "Architecture & Industrial Design", "Art & Design", "Art & Illustration", "Art & Photography", "Awards", "B2B", "Blog", 
+        "Beta", "Books & Literature", "Broadcast", "Cafés, Bars & Restaurants", "Calendar", "Case Study", "Case Studies", "Catalog", 
+        "Charity", "Community", "Conferences & Festivals", "Corporate", "Craft", "Creative", "Creative Showcase", "Culture", 
+        "Dance & Theatre", "Dashboard", "Data & Visualizations", "Design & Illustration", "Design Tools", "Designer Portfolio", 
+        "Development", "Development Tools", "Digital Asset", "Digital Product", "Digital Product: Physical", "eBook", "E-commerce", 
+        "Education", "Education & Learning", "Educational Resource", "Electronic & Devices", "Entertainment", "Environmental", 
+        "Events", "Event Calendar", "Exhibitions", "Experimental", "Experimental UI", "Fashion", "Fashion & Apparel", 
+        "Fashion & Beauty", "Fashion & Clothing", "Fashion Journalism", "Finance", "Financial", "Food & Drink", "Florists", 
+        "Furniture & Decor", "Furniture & Interiors", "Fundraising", "Gaming", "Galleries & Museums", "Graphical Design", 
+        "Health & Fitness", "Healthcare", "History", "Home & Decor", "Home & Living", "Hotels & Venues", "Hospitality", 
+        "Inspiration", "Innovation", "Interior Design", "Interior Design & Decor", "Interior & Exterior", "Insurance", "Institutions", 
+        "Interactive", "Journalism", "Kickstarter", "Kids", "Landscape Design", "Learning", "Law & Legal", "Legal", "Local Business", 
+        "Magazine", "Magazines & Newspapers", "Marketing", "Marketing & Branding", "Medical", "Medicine & Pharmaceutical", 
+        "Music", "Music & Bands", "Music Artists & Bands", "News", "Network", "Newsletters", "NFT", "No-Code Tools", 
+        "Non-Profit", "Non-Profit & Charity", "OS App", "Onboarding", "Online Shop", "Outdoors & Travel", "Parallax", "Personal", 
+        "Photography", "Photographer Portfolio", "Physical Product", "Political", "Politics & Government", "Portal", "Portfolio", 
+        "Product", "Production", "Professional", "Project Management", "Property", "Publishing", "Quiz & Poll", "Radio & Podcasts", 
+        "Real Estate", "Real Estate & Property", "Religion", "Reports", "Resource", "Résumé", "Schools, Colleges & Universities", 
+        "Science & Technology", "Service", "Showcase", "Small Business", "Social Networking", "Sports", "Studio", "SaaS", 
+        "Templates", "Technology", "Technology & Media", "Television", "Themes", "Tools", "Traditional", "Transport", 
+        "Type Foundry", "Utility", "Vineyard", "Video", "VR", "Winery", "Writing"]
     },
     {
         "category": "Style",
-        "options": ["Minimalistic", "Dark Mode", "Gradient Style", "Isometric"]
+        "options": [ "3D", "3D Animation", "Animation", "Animation & Moving Image", "Animation Brushes", "Animated", "Animated Gradients", 
+        "Apple Style", "Audio", "Background Image", "Background Photos", "Background Video", "Big Background Image", 
+        "Big Background Video", "Big Footer", "Big Menu", "Big Photo", "Big Type", "Big Type in Footer", "Black & White", 
+        "Black & White Typographic", "Bottom Navigation", "Brutalism", "Brutalist", "Brutalist Animation", "Brushes", 
+        "Bento Grid", "Bright", "Bright Center", "Bright Colors", "Cards", "Case Studies", "Center", "Classy", 
+        "Clean Colorful", "Clean Colourful", "Colorful", "Conversion", "Corporate", "Creative", "Custom Cursor", "Dark", 
+        "Dark Colors", "Dark Mode", "Designer Portfolio", "Distinctive", "Duo Color", "Editorial", "Emoji", "Experimental", 
+        "Fun", "Futuristic", "Full Width", "Fullscreen", "Flat Design", "Gradient", "Gradient Style", "Grid", "Grid Layout", 
+        "Guided Tour", "Horizontal Layout", "Horizontal Scroll", "Horizontal Scrolling", "Icons", "Illustrated", "Illustration", 
+        "Illustrative", "Illustrative Japanese", "Immersive", "Infinite Scroll", "Informative", "Interactive", "Interactive 3D", 
+        "Isometric", "Japanese", "jQuery", "Kickstarter", "Large Type", "Launch", "Liquid", "Light", "Light Colors", 
+        "Long Scrolling", "Luxury", "Magazine", "Masonry", "Material Design", "Minimal", "Minimalist", "Minimal Modern", 
+        "Modern", "Modern Design", "Mobirise", "Motion", "Monochromatic", "Music", "Neobrutalism", "Newsletter", "NFT", 
+        "No-Code Tools", "Not Found Page", "Onboarding", "One Pager", "OS App", "Parallax", "Parallax Scroll", 
+        "Parallax Scrolling", "Pastel", "Pastel Colors", "Pattern", "Patterns", "Paper", "People", "Photographic", 
+        "Physical Product", "Portfolio", "Print", "Purchasing", "Political", "Politics & Government", "Portal", 
+        "Production", "Productivity", "Project Management", "Promo", "Promotional", "Publishing", "Radio & Podcasts", 
+        "Real Estate", "Religion", "Reset Password", "Responsive", "Retro", "Retro & Vintage", "Retro Style", "Reviews", 
+        "Right", "Scroll Animation", "Scroll Effects", "Scroll Hijack", "Scrolling", "Scrolling Animation", "Serif", 
+        "Service", "Small Type", "Smokeable", "Sky", "Social", "Sound", "Storytelling", "Sticky Navigation", 
+        "Stripe Style", "Studio", "SaaS", "Swatch", "SVG", "SVG Animations", "Swiss", "Task Management", "Technology", 
+        "Text", "Text Animation", "Textures", "Traditional", "Transitions", "Typographic", "Typography", 
+        "Unusual Layout", "Unusual Navigation", "Utility", "Use of Animation", "Use of Infographics", "Video", 
+        "Video Background", "Virtual Reality", "Visible Borders", "VR", "Water", "Weather", "White", "Whiteboard", "Wood"]
     },
     {
         "category": "Platform",
-        "options": ["CMS", "No-Code Tools", "App", "Bot", "AI-Powered"]
-    },
-    {
-        "category": "Color",
-        "options": ["Landing Pages", "Blogs", "Coming Soon", "Event"]
+        "options": ["Adobe Experience Manager", "Cargo", "Cargo Collective", "Carrd", 
+        "CMS", "Contentful", "Contao", "Craft", "Craft CMS", "Craft Commerce", 
+        "Custom Django", "Custom HTML", "Django", "Drupal", "Elementor", "Framer", 
+        "Gatsby", "GitHub Pages", "Ghost", "Grav", "Kirby", "Magento", "Mailchimp", 
+        "Mobirise", "Netlify", "Next.js", "Notion", "Prismic", "ReadyMag", 
+        "Readymag", "Sanity", "SAP", "Shopify", "Sitecore", "Semplice", 
+        "Squarespace", "Squarespace 7.0", "Squarespace 7.1", "Tilda", "Webflow", 
+        "Wagtail", "Wix", "Woo Commerce", "WordPress", "Wordpress"]
     },
     {
         "category": "Industry",
-        "options": ["Landing Pages", "Blogs", "Coming Soon", "Event"]
+        "options": ["Accounting", "AI", "Animals", "App", "Architecture", "Art", "Automotive", "Baby Products", "Beauty", "Beauty / Fashion",
+        "Beverages", "Blockchain", "Books", "Books & Literature", "Branding", "Business", "Business & Corporate", "Business & Finance",
+        "Charity", "Children", "Climate", "Clothing", "Collaboration Tools", "Communication", "Community", "Construction", "Consumable",
+        "Corporate", "Course", "Craft", "Creative", "Creative Technology", "Crypto", "Culture", "DTC", "Dance & Theatre", "Data Visualization",
+        "Design", "Design Tools", "Development", "Development Tools", "Digital Asset", "Digital Product", "Digital Product: Physical",
+        "E-Commerce", "Education", "Electronic & Devices", "Entertainment", "Environmental", "Environment & Sustainability", "Events",
+        "Exhibitions", "Experimental", "Fashion", "Fashion & Apparel", "Fashion & Beauty", "Fashion & Clothing", "Fashion Journalism",
+        "Finance", "Finance / Money", "Financial", "Fintech", "Food & Drink", "Food & Beverage", "Food & Drinks", "Food Delivery",
+        "Furniture", "Furniture & Decor", "Furniture & Interiors", "Fundraising", "Gaming", "Graphical Design", "Health & Fitness",
+        "Health & Wellness", "Healthcare", "History", "Home & Decor", "Home & Living", "Homewares", "Hospitality", "HR", "Illustration",
+        "Inspiration", "Innovation", "Interior Design", "Interior Design & Decor", "Interior & Exterior", "Insurance", "Journalism",
+        "Kids", "Landscape Design", "Law & Legal", "Legal", "Lifestyle", "Local Business", "Magazine", "Marketing", "Marketing & Branding",
+        "Medicine & Pharmaceutical", "Medical", "Miscellaneous", "Mobility", "Movies", "Music", "NFT", "Nature", "News", "No-Code Tools",
+        "Non-Profit", "Non-Profit & Charity", "OS App", "Online Shop", "Outdoors & Travel", "Parallax", "Personal", "Pet", "Photography",
+        "Photographer Portfolio", "Physical Product", "Political", "Politics & Government", "Portal", "Portfolio", "Product", "Product Design",
+        "Production", "Property", "Publishing", "Real Estate", "Real Estate & Property", "Religion", "Reports", "Restaurant", "Retail",
+        "SaaS", "Science & Technology", "Security", "Service", "Showcase", "Small Business", "Smokeable", "Social Networking", "Software",
+        "Sports", "Startup", "Studio", "Sustainability", "Tech", "Tech Start-ups", "Technology", "Technology & Media", "Television", "Themes",
+        "Tools", "Transport", "Travel", "Type Foundry", "Ventures", "VR", "Web3", "Wellbeing", "Winery", "Writing", "Weddings"]
+    },
+    {
+        "category": "Pages",
+        "options": [ "404 Pages", "About", "About Page", "About Us", "Account Setup", "App Case Study", "Articles", "Bento", "Bento Grid", "Blog",
+        "Blog Post", "Brands", "Call to Action", "Cancel Subscription", "Career", "Careers", "Case Study", "Catalog", "Contact Page",
+        "Content", "Contacts", "Customer Support", "CTA", "Dashboard", "Delete Account", "Discover", "FAQ", "Features", "Footer",
+        "Footer Bento Grid", "Guided Tour", "Hero", "Home Page", "How It Works", "Integrations", "Landing", "Landing Page", "Login Page",
+        "Log In", "Made in Webflow", "Marketing Blog", "Magazine / Newspaper / Blog", "Newsletter", "Not Found Page", "Onboarding",
+        "Other", "Page Builder", "Portfolio", "Portfolio Page", "Pricing", "Pricing Articles", "Pricing Page", "Product", "Product Listing",
+        "Product Page", "Product Page & Landing", "Profile & Account Settings", "Quiz & Poll", "Reset Password", "Resources", "Reviews",
+        "Right", "Signup", "Sign Up", "Single Page", "Social Feed", "Stats", "Support & Help", "Task Management", "Team", "Testimonials",
+        "Utility", "Verification", "Walkthrough", "Works"
+]
+    },
+    {
+        "category": "Color",
+        "options": [ "Aqua", "Beige", "Black", "Black & White", "Black & White Typographic", 
+        "Blue", "Bright Colors", "Brown", "Cyan", "Dark Colors", "Gray", 
+        "Green", "Grey", "Light Colors", "Magenta", "Maroon", "Multiple Colors", 
+        "Navy", "Olive", "Orange", "Pastel Colors", "Pink", "Purple", "Red", 
+        "Teal", "Ultra Violet", "White", "Yellow"
+]
     }
-  
 ]

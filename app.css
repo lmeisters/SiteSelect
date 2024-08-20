@@ -4,19 +4,20 @@
 :root {
     --font-primary: "Anton", sans-serif;
     --font-secondary: "Inter", sans-serif;
+
     --color-background: #f2f2f2;
     --color-text: #202020;
     --color-muted: #555;
     --color-summary: #666;
-    --color-selection-bg: #202020;
-    --color-selection-text: #f2f2f2;
-    --color-border: #20202085;
-    --font-size-larger: 2.5rem;
+
+    --font-size-larger: 2.5rem; /* 40px */
     --font-size-large: 1.5rem; /* 24px */
     --font-size-medium: 1.5rem; /* 24px */
     --font-size-small: 1rem; /* 16px */
+
     --padding-small: 0.5rem; /* 8px */
     --padding-medium: 1.5rem; /* 24px */
+
     --margin-small: 0.5rem; /* 8px */
     --margin-medium: 1.5rem; /* 24px */
 }
@@ -49,8 +50,8 @@ body {
 }
 
 ::selection {
-    background: var(--color-selection-bg);
-    color: var(--color-selection-text);
+    background: var(--color-muted);
+    color: var(--color-background);
 }
 
 /* Header Styling */
@@ -111,7 +112,7 @@ img {
 
 /* Horizontal Rule Styling */
 hr {
-    border: 0.03125rem solid var(--color-border); /* 0.5px */
+    border: 0.03125rem solid var(--color-text); /* 0.5px */
     margin-top: 0.5rem; /* 8px */
 }
 
@@ -276,7 +277,7 @@ footer {
     background-color: var(--color-text);
     margin: 0;
     padding: var(--padding-medium);
-    color: var(--color-selection-text);
+    color: var(--color-background);
 
     position: sticky;
     bottom: 0;
@@ -293,6 +294,7 @@ nav {
     position: fixed;
     left: 94vw;
     margin-top: 1rem; /* 16px */
+    z-index: 10;
 }
 
 h3 {
@@ -310,6 +312,15 @@ p {
     font-weight: 600;
     color: var(--color-background);
     /* margin: 0 0 0 1rem; top | right | bottom | left */
+}
+
+#error-message {
+    color: var(--color-muted);
+    padding: 2rem;
+    margin: 15rem 0;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1rem;
 }
 
 /* Responsive Styles */
