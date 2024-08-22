@@ -29,6 +29,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-secondary);
     background-color: var(--color-background);
@@ -80,19 +84,42 @@ a:hover {
 h1 {
     font-family: var(--font-primary);
     font-weight: 400;
-    font-size: calc(
-        10rem + 5vw
-    ); /* Responsive font size based on viewport width */
+    font-size: calc(10rem + 5vw);
     margin: 0;
 }
+@media (max-width: 1400px) {
+    h1 {
+        font-size: calc(7rem + 4vw);
+    }
+}
 
+@media (max-width: 900px) {
+    h1 {
+        font-size: calc(1rem + 3vw);
+    }
+
+    .filter-tag {
+        /* display: none; */
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 700px) {
+    h1 {
+        font-size: 50px !important;
+    }
+    h2 {
+        font-size: 16px !important;
+    }
+    .filter-tag {
+        display: none;
+    }
+}
 h2 {
     font-family: var(--font-secondary);
     font-weight: 200;
-    font-size: calc(
-        0.4rem + 1vw
-    ); /* Responsive font size based on viewport width */
-    margin-left: calc(5rem + 2vw); /* Responsive margin */
+    font-size: calc(0.3rem + 1vw);
+    margin-left: calc(5rem + 2vw);
     max-width: 75%;
 }
 
@@ -151,6 +178,8 @@ hr {
     font-size: var(--font-size-small);
     color: var(--color-muted);
     margin: 0.625rem 0; /* 10px */
+    display: flex;
+    gap: 1rem;
 }
 
 .website-summary {
@@ -190,7 +219,7 @@ hr {
 .filter-category {
     display: inline-grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px 24px;
+    gap: 16px 24px;
     margin-bottom: 20px;
     align-items: start;
 }
@@ -222,7 +251,7 @@ hr {
     margin: 0;
     padding: 0;
     cursor: pointer;
-    /* font-size: 20px; */
+    font-size: 20px;
 }
 
 #filterButton:hover,
@@ -290,11 +319,32 @@ footer {
     font-size: 2.75rem; /* 44px */
 }
 
-nav {
+/* Navbar Styling*/
+.navbar {
     position: fixed;
-    left: 94vw;
-    margin-top: 1rem; /* 16px */
-    z-index: 10;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 24px;
+    height: 60px;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .nav-item {
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 h3 {
@@ -352,10 +402,6 @@ p {
         max-width: 100%;
     }
 
-    nav {
-        left: 70%;
-    }
-
     .gallery-container {
         grid-template-columns: 1fr;
     }
@@ -368,5 +414,9 @@ p {
         top: 10%;
         left: 50%;
         transform: translate(-50%, 0);
+    }
+
+    .email {
+        font-size: var(--font-size-small);
     }
 }

@@ -1,19 +1,29 @@
-// Function to load data from the JSON file
+// Cache variables
+let websitesCache = [];
+let filterOptionsCache = [];
+
+// Function to load data with caching
 async function loadData() {
+    if (websitesCache.length > 0) return websitesCache;
+
     try {
         const response = await fetch("websites.json");
-        return await response.json();
+        websitesCache = await response.json();
+        return websitesCache;
     } catch (error) {
         console.error("Error loading data:", error);
         return [];
     }
 }
 
-// Function to load filter options from the JSON file
+// Function to load filters with caching
 async function loadFilters() {
+    if (filterOptionsCache.length > 0) return filterOptionsCache;
+
     try {
         const response = await fetch("filters.json");
-        return await response.json();
+        filterOptionsCache = await response.json();
+        return filterOptionsCache;
     } catch (error) {
         console.error("Error loading filters:", error);
         return [];
@@ -34,7 +44,7 @@ function createWebsiteCard(website) {
             <hr />
             <div class="website-info-block">
                 <h3 class="website-name">${website.name}</h3>
-                <p class="website-tags"><span>${topTags.join(", ")}</span></p>
+                <p class="website-tags"><span>${topTags[0]}</span><span>${topTags[1]}</span><span>${topTags[2]}</span></p>
             </div>
             <hr />
             <p class="website-summary">${website.summary}</p>
@@ -45,7 +55,7 @@ function createWebsiteCard(website) {
 
 // Initialize variables
 let displayedWebsitesCount = 0;
-const websitesPerPage = 6;
+const websitesPerPage = 9;
 let websites = [];
 let filterOptions = [];
 const selectedFilters = new Set();
@@ -115,7 +125,6 @@ function toggleFilter(tag) {
 }
 
 // Function to filter websites by tags and search input
-// Function to filter websites by tags and search input
 function filterWebsites() {
     const searchQuery = document
         .getElementById("searchInput")
@@ -181,6 +190,15 @@ function handleActiveButtonUpdate(option) {
     updateActiveButton(selectedButton || allButton);
 }
 
+// Debounce function to limit how often filterWebsites is called
+function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
 // Event listeners
 document.addEventListener("DOMContentLoaded", async function () {
     const filterButton = document.getElementById("filterButton");
@@ -227,9 +245,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
     loadMoreButton.addEventListener("click", loadMoreWebsites);
+
+    // Use debounce for search input
     document
         .getElementById("searchInput")
-        .addEventListener("input", filterWebsites);
+        .addEventListener("input", debounce(filterWebsites, 300));
 
     // Calculate and display the most common tags
     const tagCount = {};
