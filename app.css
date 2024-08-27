@@ -33,6 +33,10 @@
 
 html {
     scroll-behavior: smooth;
+
+    /* Firefox Scrollbar Styling*/
+    scrollbar-color: var(--color-text) var(--color-background); /* thumb color, track color */
+    scrollbar-width: thin; /* makes the scrollbar thinner */
 }
 
 body {
@@ -275,6 +279,7 @@ footer {
     background-color: var(--color-text);
     margin: 0;
     padding: var(--padding-medium);
+    padding-bottom: 0;
     color: var(--color-background);
     position: sticky;
     bottom: 0;
@@ -304,6 +309,11 @@ footer {
 .website-card img {
     width: 100%;
     height: auto;
+    transition: filter 0.3s ease;
+}
+
+.website-card img:hover {
+    filter: brightness(70%); /* Adjust brightness to darken the image */
 }
 
 .website-info-block {
@@ -341,6 +351,23 @@ footer {
     display: flex;
     /* align-items: center; */
     justify-content: center;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(
+        --color-text
+    ); /* Color of the scrollbar thumb (the draggable part) */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(
+        --color-muted
+    ); /* Color change on hover to indicate interactivity */
 }
 
 /* Responsive Styles */

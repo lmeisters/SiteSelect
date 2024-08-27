@@ -451,7 +451,7 @@
         ],
         "summary": "Features the best landing page designs. Get inspired by real landing page examples with full website screenshots. Enjoy unlimited access to website categories, old versions, filter & search results.",
         "url": "https://www.lapa.ninja/",
-        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+        "imageUrl": "images/Lapa_Ninja.webp"
     },
     {
         "name": "Land-book",
@@ -533,9 +533,9 @@
             "Web App",
             "Writing"
         ],
-        "summary": "Find the best hand-picked website design inspiration. We’re a curated website design gallery for Creatives, updated daily.",
+        "summary": "Find the best hand-picked website design inspiration. A curated website design gallery for Creatives, updated daily.",
         "url": "https://land-book.com/",
-        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+        "imageUrl": "images/Lapa_Ninja.png"
     },
     {
         "name": "Landingfolio",
@@ -1371,6 +1371,7 @@
         ],
         "summary": "Browse the best of the internet. Hand-picked and updated daily.",
         "url": "https://www.seesaw.website/",
-        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg"
+        "imageUrl": "https://cdn.prod.website-files.com/64760069e93084646c9ee428/64776faa0c1419b8475edd51_www.awwwards.com_%20(1).jpg",
+        "altText": "See Saw website screenshot showcasing a modern and innovative design portfolio with various design and tech tags"
     }
 ]
