@@ -372,6 +372,16 @@ footer {
 
 /* Responsive Styles */
 /* For tablets and large phones (max-width: 1024px) */
+@media (min-width: 1920px) {
+    #filterMenu {
+        grid-template-columns: repeat(
+            auto-fill,
+            minmax(300px, 1fr)
+        ); /* Maximize space utilization on large screens */
+        gap: 48px; /* Consistent spacing on ultra-wide screens */
+    }
+}
+
 @media (max-width: 1420px) {
     h1 {
         font-size: 12rem;
@@ -379,6 +389,14 @@ footer {
 
     h2 {
         margin-left: 6rem;
+    }
+
+    #filterMenu {
+        grid-template-columns: repeat(
+            auto-fill,
+            minmax(250px, 1fr)
+        ); /* Even wider columns for extra-large screens */
+        gap: 40px; /* Additional gap to match the screen size */
     }
 }
 
@@ -403,9 +421,17 @@ footer {
 
 /* FilterMenu respinsiveness */
 @media (max-width: 1024px) {
-    #filterMenu {
+    /* #filterMenu {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 40px;
+    } */
+
+    #filterMenu {
+        grid-template-columns: repeat(
+            auto-fill,
+            minmax(200px, 1fr)
+        ); /* Wider columns for bigger screens */
+        gap: 32px; /* More gap for larger screens */
     }
 }
 
