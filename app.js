@@ -287,3 +287,26 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     filterWebsites();
 });
+
+document.addEventListener("scroll", function () {
+    const footerHeading = document.querySelector(".h1-footer");
+    const windowHeight = window.innerHeight;
+    const isMobile = windowHeight <= 768; // Example breakpoint for mobile
+
+    // Get the height of the document and the scroll position
+    const scrollPosition = window.scrollY;
+    const documentHeight = document.body.scrollHeight;
+
+    const scrollPercent = scrollPosition / (documentHeight - windowHeight);
+
+    const newOpacity = Math.min(0.1 + scrollPercent * 0.9, 1);
+    const newTransform = `translate3d(0, ${scrollPercent * 50}px, 0) scale(1)`;
+
+    footerHeading.style.opacity = newOpacity;
+    footerHeading.style.transform = newTransform;
+
+    // Optional: Adjust styles for mobile
+    if (isMobile) {
+        footerHeading.style.fontSize = "2rem"; // Example adjustment for mobile
+    }
+});

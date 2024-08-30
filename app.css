@@ -102,7 +102,7 @@ h1 {
 h2 {
     font-family: var(--font-secondary);
     font-weight: 200;
-    font-size: calc(0.3rem + 1vw);
+    font-size: calc(0.5rem + 1vw);
     margin-left: calc(5rem + 2vw);
     max-width: 75%;
 }
@@ -127,9 +127,8 @@ p {
 }
 
 .email {
-    font-size: var(--font-size-larger);
+    /* font-size: var(--font-size-larger); */
     font-weight: 600;
-    color: var(--color-background);
 }
 
 /* Link Styling */
@@ -276,22 +275,47 @@ hr {
     color: #ff0000;
 }
 
+a {
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+/* Info container */
+.info-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    padding-top: 1rem;
+}
+
+.info-btn {
+    font-weight: 500;
+}
+
 /* Footer Styling */
 footer {
     background-color: var(--color-text);
     margin: 0;
     padding: var(--padding-medium);
-    padding-bottom: 0;
+    padding: 0 1rem;
     color: var(--color-background);
     position: sticky;
     bottom: 0;
     left: 0;
     width: 100%;
+    overflow: hidden;
 }
 
-.footer-text {
-    margin: 1rem 0 0 1rem;
-    font-size: 2.75rem; /* 44px */
+.h1-footer {
+    font-size: 24vw;
+    color: var(--color-background);
+    opacity: 0.5;
+    box-sizing: border-box;
+    line-height: 1.4;
+
+    will-change: transform, opacity;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 /* Gallery Grid Styling */
@@ -342,6 +366,14 @@ footer {
     font-size: 1rem;
     color: var(--color-summary);
     margin: 0.625rem 0; /* 10px */
+}
+
+.info-container span {
+    color: var(--color-muted);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
 }
 
 #error-message {
@@ -411,10 +443,6 @@ footer {
         font-size: 7.5rem; /* 120px */
     }
 
-    /* #searchInput {
-        width: 100%;
-    } */
-
     .website-info-block {
         flex-direction: column;
         align-items: flex-start;
@@ -443,7 +471,7 @@ footer {
     }
 
     h1 {
-        font-size: calc(1rem + 3vw);
+        font-size: calc(4rem + 5vw);
     }
 
     h3 {
@@ -453,7 +481,7 @@ footer {
 
     .filter-tag {
         /* display: none; */
-        font-size: 16px !important;
+        font-size: 1.2rem !important;
     }
 }
 
@@ -475,6 +503,7 @@ footer {
     h2 {
         margin-left: 0;
         max-width: 100%;
+        font-size: 1rem;
     }
 
     .gallery-container {
@@ -487,10 +516,6 @@ footer {
         transform: translate(-50%, 0);
     }
 
-    .email {
-        font-size: var(--font-size-small);
-    }
-
     footer {
         padding: var(--padding-small);
     }
@@ -498,6 +523,10 @@ footer {
     #filterMenu {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 24px;
+    }
+
+    .filter-tag {
+        font-size: 1rem !important;
     }
 }
 
@@ -511,12 +540,10 @@ footer {
         font-size: 3.5rem;
     }
 
-    h2 {
-        font-size: 1rem;
-    }
-
-    .filter-tag {
-        display: none;
+    .info-container {
+        margin-top: 1rem;
+        justify-content: center;
+        transition: all 0.5s ease-out;
     }
 }
 
@@ -532,5 +559,10 @@ footer {
 
     #searchContainer {
         top: 36%;
+    }
+
+    .h1-footer {
+        font-size: 23vw;
+        line-height: 1.8;
     }
 }
