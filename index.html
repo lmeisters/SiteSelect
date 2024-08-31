@@ -3,6 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="SiteSelect - Discover a curated collection of stunning websites for instant inspiration and innovative design ideas to elevate your web design projects."
+        />
+        <meta
+            name="keywords"
+            content="web design, website inspiration, curated websites, design ideas, SiteSelect"
+        />
         <link rel="stylesheet" href="app.css" />
         <link
             rel="apple-touch-icon"
@@ -22,19 +30,23 @@
             href="favicon/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <title>SiteSelect</title>
+        <title>SiteSelect | Curated Web Design Inspiration</title>
     </head>
-    <body>
+    <body class="preloader-active">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div class="loader-slide"><h1>SiteSelect</h1></div>
+        </div>
+
         <nav class="navbar">
             <div class="container">
-                <!-- <span class="logo">SiteSelect</span> -->
                 <span id="searchToggle" class="nav-item">Search</span>
             </div>
         </nav>
 
-        <section class="main">
+        <main>
             <header>
-                <h1>SiteSelect.</h1>
+                <h1>SiteSelect</h1>
                 <div class="header-headings">
                     <h2>
                         Discover Your Ultimate Destination for Instant
@@ -49,6 +61,7 @@
                     type="text"
                     id="searchInput"
                     placeholder="Search topics..."
+                    aria-label="Search topics"
                 />
                 <span id="closeSearch">Close</span>
             </div>
@@ -63,7 +76,7 @@
                     </div>
                 </div>
 
-                <hr style="border: 1px solid #ccc; margin: 16px 0" />
+                <hr class="filter-divider" />
 
                 <div id="filterMenu" style="display: none"></div>
                 <!-- Filters will be dynamically generated here -->
@@ -92,7 +105,7 @@
                     >
                 </p>
             </div>
-        </section>
+        </main>
 
         <footer>
             <h1 class="h1-footer">SiteSelect</h1>
