@@ -236,6 +236,10 @@ hr {
     text-decoration: underline;
 }
 
+.filter-tag.active {
+    text-decoration: underline;
+}
+
 /* Load More Button Styling */
 #loadMoreButton {
     margin-top: 1.25rem; /* 20px */
@@ -368,11 +372,12 @@ footer {
     margin: 0.625rem 0; /* 10px */
 }
 
-.info-container span {
+.info-container p {
     color: var(--color-muted);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    text-align: center;
     gap: 0.3rem;
 }
 
@@ -545,6 +550,10 @@ footer {
         justify-content: center;
         transition: all 0.5s ease-out;
     }
+
+    #commonTagsContainer .filter-tag:nth-child(n + 5) {
+        display: none; /* Hide all tags after the fourth one */
+    }
 }
 
 @media (max-width: 480px) {
@@ -564,5 +573,9 @@ footer {
     .h1-footer {
         font-size: 23vw;
         line-height: 1.8;
+    }
+
+    #commonTagsContainer .filter-tag {
+        display: none; /* Hide all tags after the fourth one */
     }
 }

@@ -112,16 +112,65 @@ function toggleFilter(tag) {
     const filterMenu = document.getElementById("filterMenu");
     const allTags = filterMenu.querySelectorAll(".filter-tag");
 
+    // Clear active state from all tags before setting the clicked one
     allTags.forEach((el) => {
-        if (el.textContent === tag) {
-            el.classList.toggle("active");
-            el.classList.contains("active")
-                ? selectedFilters.add(tag)
-                : selectedFilters.delete(tag);
-        }
+        el.classList.remove("active");
     });
 
-    filterWebsites();
+    // Add 'active' class to the clicked tag
+    const clickedTag = Array.from(allTags).find((el) => el.textContent === tag);
+    if (clickedTag) {
+        clickedTag.classList.add("active");
+    }
+
+    // Update the selected filters set
+    selectedFilters.clear();
+    selectedFilters.add(tag);
+
+    // Reset if 'All' is clicked
+    if (tag === "All") {
+        selectedFilters.clear(); // Clear selected filters
+        renderGallery(websites); // Reset to show all websites
+    } else {
+        filterWebsites(); // Otherwise, filter based on the selected tag
+    }
+}
+
+// Function to update the active state of the filter buttons
+function updateActiveButton(activeButton) {
+    document.querySelectorAll(".filter-tag").forEach((button) => {
+        button.classList.remove("active");
+    });
+    if (activeButton) {
+        activeButton.classList.add("active");
+    }
+}
+
+// Function to update active button state
+function handleActiveButtonUpdate(option) {
+    const allButton = document.querySelector(".filter-tag[textContent='All']");
+    const selectedButton = Array.from(
+        document.querySelectorAll(".filter-tag")
+    ).find(
+        (button) =>
+            button.textContent.trim().toLowerCase() ===
+            option.trim().toLowerCase()
+    );
+
+    // Safe checks before manipulating classList
+    if (allButton) {
+        if (option !== "All") {
+            allButton.classList.remove("active");
+        } else {
+            allButton.classList.add("active");
+        }
+    }
+
+    if (selectedButton) {
+        updateActiveButton(selectedButton);
+    } else {
+        console.warn(`No button found with text: ${option}`);
+    }
 }
 
 // Function to filter websites by tags and search input
@@ -170,24 +219,6 @@ function toggleSearchBar() {
         searchContainer.style.display === "block" ? "none" : "block";
     if (searchContainer.style.display === "block")
         document.getElementById("searchInput").focus();
-}
-
-// Function to update the active state of the filter buttons
-function updateActiveButton(activeButton) {
-    document
-        .querySelectorAll(".filter-tag")
-        .forEach((button) => button.classList.remove("active"));
-    activeButton.classList.add("active");
-}
-
-// Function to update active button state
-function handleActiveButtonUpdate(option) {
-    const allButton = document.querySelector(".filter-tag[textContent='All']");
-    const selectedButton = document.querySelector(
-        `.filter-tag[textContent="${option}"]`
-    );
-    if (option !== "All") allButton.classList.remove("active");
-    updateActiveButton(selectedButton || allButton);
 }
 
 // Debounce function to limit how often filterWebsites is called
@@ -285,28 +316,5 @@ document.addEventListener("DOMContentLoaded", async function () {
         commonTagsContainer.appendChild(tagButton);
     });
 
-    filterWebsites();
-});
-
-document.addEventListener("scroll", function () {
-    const footerHeading = document.querySelector(".h1-footer");
-    const windowHeight = window.innerHeight;
-    const isMobile = windowHeight <= 768; // Example breakpoint for mobile
-
-    // Get the height of the document and the scroll position
-    const scrollPosition = window.scrollY;
-    const documentHeight = document.body.scrollHeight;
-
-    const scrollPercent = scrollPosition / (documentHeight - windowHeight);
-
-    const newOpacity = Math.min(0.1 + scrollPercent * 0.9, 1);
-    const newTransform = `translate3d(0, ${scrollPercent * 50}px, 0) scale(1)`;
-
-    footerHeading.style.opacity = newOpacity;
-    footerHeading.style.transform = newTransform;
-
-    // Optional: Adjust styles for mobile
-    if (isMobile) {
-        footerHeading.style.fontSize = "2rem"; // Example adjustment for mobile
-    }
+    filterWebsites(); // Initialize filtering with no active filters
 });
