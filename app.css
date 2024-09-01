@@ -196,8 +196,11 @@ hr {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 56px;
     align-items: start;
-    overflow-x: auto;
+    overflow-x: auto; /* Allows horizontal scrolling when content overflows */
+    overflow-y: hidden;
     white-space: nowrap;
+
+    display: none;
 }
 
 .filter-category {

@@ -1,3 +1,5 @@
+// import { gsap } from "gsap";
+
 // Cache variables
 let websitesCache = [];
 let filterOptionsCache = [];
@@ -165,25 +167,25 @@ function toggleFilter(tag) {
         el.classList.remove("active");
     });
 
-    // Add 'active' class to the clicked tag
+    // Handle filter reset on double click
     const clickedTag =
         Array.from(allTags).find((el) => el.textContent === tag) ||
         Array.from(commonTags).find((el) => el.textContent === tag);
 
     if (clickedTag) {
-        clickedTag.classList.add("active");
-    }
-
-    // Update the selected filters set
-    selectedFilters.clear();
-    selectedFilters.add(tag);
-
-    // Reset if 'All' is clicked
-    if (tag === "All") {
-        selectedFilters.clear(); // Clear selected filters
-        renderGallery(websites); // Reset to show all websites
-    } else {
-        filterWebsites(); // Otherwise, filter based on the selected tag
+        if (clickedTag.classList.contains("active")) {
+            // If already active, reset filters
+            selectedFilters.clear();
+            renderGallery(websites); // Reset to show all websites
+            handleActiveButtonUpdate("All");
+        } else {
+            // Otherwise, apply new filter
+            clickedTag.classList.add("active");
+            selectedFilters.clear();
+            selectedFilters.add(tag);
+            filterWebsites();
+            handleActiveButtonUpdate(tag);
+        }
     }
 }
 
@@ -221,8 +223,18 @@ function filterWebsites() {
 // Function to toggle the visibility of the filter menu
 function toggleFilterMenu() {
     const filterMenu = document.getElementById("filterMenu");
-    filterMenu.style.display =
-        filterMenu.style.display === "none" ? "inline-flex" : "none";
+    const isOpen = filterMenu.style.display === "inline-flex";
+
+    if (isOpen) {
+        gsap.to(filterMenu, { height: 0, display: "none", duration: 0.3 });
+    } else {
+        gsap.set(filterMenu, { display: "inline-flex" });
+        gsap.fromTo(
+            filterMenu,
+            { height: 0 },
+            { height: "auto", duration: 0.3 }
+        );
+    }
 }
 
 // Function to toggle search bar visibility
