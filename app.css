@@ -52,11 +52,12 @@ body {
 main {
     margin: 0;
     padding: var(--padding-medium);
+    min-height: 100vh;
+    background: var(--color-background);
+
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh;
-    background: var(--color-background);
     position: relative;
     z-index: 1;
 }
@@ -151,12 +152,6 @@ p {
 }
 
 /* Link Styling */
-/* a {
-    text-decoration: none;
-    color: var(--color-text);
-    font-size: var(--font-size-large);
-} */
-
 a:hover {
     text-decoration: underline;
 }
@@ -523,26 +518,34 @@ body.preloader-active {
 }
 
 /* Responsive Styles */
+/* Applies to screens that are 1920px wide and 1080px tall or larger */
 @media (min-width: 1920px) and (min-height: 1080px) {
+    #filterMenu {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 48px;
+    }
+
     #filterButton,
     .filter-tag {
         font-size: var(--font-size-large);
     }
 
-    filter-category h4,
+    .filter-category h4,
     .filter-category span {
         font-size: var(--font-size-medium);
     }
 }
 
-/* For tablets and large phones (max-width: 1024px) */
-@media (min-width: 1920px) {
-    #filterMenu {
-        grid-template-columns: repeat(
-            auto-fill,
-            minmax(300px, 1fr)
-        ); /* Maximize space utilization on large screens */
-        gap: 48px;
+/* Applies to very wide screens, such as ultra-wide monitors */
+@media (min-width: 2560px) {
+    #filterButton,
+    .filter-tag {
+        font-size: var(--font-size-larger);
+    }
+
+    .filter-category h4,
+    .filter-category span {
+        font-size: var(--font-size-larger);
     }
 }
 
