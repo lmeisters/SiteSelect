@@ -56,13 +56,18 @@
                     </h2>
                 </div>
             </header>
-            <div id="searchContainer">
+            <div id="searchContainer" class="search-container">
                 <input
                     type="text"
                     id="searchInput"
                     placeholder="Search topics..."
                     aria-label="Search topics"
+                    autocomplete="off"
                 />
+                <div
+                    id="autocompleteContainer"
+                    class="autocomplete-container"
+                ></div>
                 <span id="closeSearch">Close</span>
             </div>
 

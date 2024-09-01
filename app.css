@@ -282,6 +282,7 @@ hr {
     border: 0.125rem solid #ddd; /* 2px */
     font-family: var(--font-secondary);
     background-color: var(--color-background);
+    font-size: 16px;
 }
 
 #closeSearch {
@@ -289,13 +290,41 @@ hr {
     background-color: var(--color-background);
     color: var(--color-text);
     position: absolute;
-    padding-left: 0.5rem;
-    top: 1rem;
-    right: 0.5rem;
+    padding-left: 1rem;
+    top: 1.1rem;
+    right: 1rem;
 }
 
 #closeSearch:hover {
     color: #ff0000;
+}
+
+/* Autocomplete Container */
+.autocomplete-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-background);
+    border: 0.125rem solid #ddd;
+    border-top: none;
+    max-height: 150px; /* Limit height for scrolling */
+    overflow-y: auto;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+    z-index: 10;
+}
+
+/* Autocomplete Suggestion */
+.autocomplete-suggestion {
+    padding: 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-muted);
+    font-size: var(--font-size-small);
+}
+
+/* Suggestion hover effect */
+.autocomplete-suggestion:hover {
+    background-color: #f0f0f0;
 }
 
 a {

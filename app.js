@@ -1,6 +1,7 @@
 // Cache variables
 let websitesCache = [];
 let filterOptionsCache = [];
+let allTags = new Set(); // To store all unique tags for autocomplete
 
 // Function to load data with caching
 async function loadData() {
@@ -9,11 +10,48 @@ async function loadData() {
     try {
         const response = await fetch("websites.json");
         websitesCache = await response.json();
+
+        // Collect all tags from websites
+        websitesCache.forEach((website) => {
+            website.tags.forEach((tag) => allTags.add(tag));
+        });
+
         return websitesCache;
     } catch (error) {
         console.error("Error loading data:", error);
         return [];
     }
+}
+
+// Function to create autocomplete suggestions based on user input
+function createAutocompleteSuggestions(input) {
+    const autocompleteContainer = document.getElementById(
+        "autocompleteContainer"
+    );
+    autocompleteContainer.innerHTML = ""; // Clear previous suggestions
+
+    if (input.length === 0) return; // Do not show suggestions if input is empty
+
+    // Filter tags based on input
+    const filteredTags = Array.from(allTags).filter((tag) =>
+        tag.toLowerCase().includes(input.toLowerCase())
+    );
+
+    // Create and append suggestion elements
+    filteredTags.forEach((tag) => {
+        const suggestionElement = document.createElement("div");
+        suggestionElement.className = "autocomplete-suggestion";
+        suggestionElement.textContent = tag;
+
+        // Add click event to set input value and filter websites
+        suggestionElement.addEventListener("click", () => {
+            document.getElementById("searchInput").value = tag;
+            filterWebsites();
+            autocompleteContainer.innerHTML = ""; // Clear suggestions after click
+        });
+
+        autocompleteContainer.appendChild(suggestionElement);
+    });
 }
 
 // Function to load filters with caching
@@ -44,7 +82,11 @@ function createWebsiteCard(website) {
             <hr />
             <div class="website-info-block">
                 <h3 class="website-name">${website.name}</h3>
-                <p class="website-tags"><span>${topTags[0]}</span><span>${topTags[1]}</span><span>${topTags[2]}</span></p>
+                <p class="website-tags">
+                    <span>${topTags[0] || ""}</span>
+                    <span>${topTags[1] || ""}</span>
+                    <span>${topTags[2] || ""}</span>
+                </p>
             </div>
             <hr />
             <p class="website-summary">${website.summary}</p>
@@ -110,15 +152,24 @@ function renderFilters() {
 // Function to toggle filter state and update display
 function toggleFilter(tag) {
     const filterMenu = document.getElementById("filterMenu");
+    const commonTagsContainer = document.getElementById("commonTagsContainer");
     const allTags = filterMenu.querySelectorAll(".filter-tag");
+    const commonTags = commonTagsContainer.querySelectorAll(".filter-tag");
 
     // Clear active state from all tags before setting the clicked one
     allTags.forEach((el) => {
         el.classList.remove("active");
     });
 
+    commonTags.forEach((el) => {
+        el.classList.remove("active");
+    });
+
     // Add 'active' class to the clicked tag
-    const clickedTag = Array.from(allTags).find((el) => el.textContent === tag);
+    const clickedTag =
+        Array.from(allTags).find((el) => el.textContent === tag) ||
+        Array.from(commonTags).find((el) => el.textContent === tag);
+
     if (clickedTag) {
         clickedTag.classList.add("active");
     }
@@ -136,62 +187,24 @@ function toggleFilter(tag) {
     }
 }
 
-// Function to update the active state of the filter buttons
-function updateActiveButton(activeButton) {
-    document.querySelectorAll(".filter-tag").forEach((button) => {
-        button.classList.remove("active");
-    });
-    if (activeButton) {
-        activeButton.classList.add("active");
-    }
-}
-
-// Function to update active button state
-function handleActiveButtonUpdate(option) {
-    const allButton = document.querySelector(".filter-tag[textContent='All']");
-    const selectedButton = Array.from(
-        document.querySelectorAll(".filter-tag")
-    ).find(
-        (button) =>
-            button.textContent.trim().toLowerCase() ===
-            option.trim().toLowerCase()
-    );
-
-    // Safe checks before manipulating classList
-    if (allButton) {
-        if (option !== "All") {
-            allButton.classList.remove("active");
-        } else {
-            allButton.classList.add("active");
-        }
-    }
-
-    if (selectedButton) {
-        updateActiveButton(selectedButton);
-    } else {
-        console.warn(`No button found with text: ${option}`);
-    }
-}
-
 // Function to filter websites by tags and search input
 function filterWebsites() {
     const searchQuery = document
         .getElementById("searchInput")
         .value.toLowerCase();
 
-    const filteredWebsites = websites.filter((website) => {
+    const filteredWebsites = websitesCache.filter((website) => {
         const matchesSearchQuery =
             website.name.toLowerCase().includes(searchQuery) ||
             website.summary.toLowerCase().includes(searchQuery) ||
             website.tags.some((tag) => tag.toLowerCase().includes(searchQuery));
 
-        const matchesFilters = [...selectedFilters].every((filter) => {
-            return website.tags.includes(filter);
-        });
+        // Apply filter based on selectedFilters
+        const matchesFilters =
+            selectedFilters.size === 0 ||
+            website.tags.some((tag) => selectedFilters.has(tag));
 
-        return (
-            matchesSearchQuery && (selectedFilters.size === 0 || matchesFilters)
-        );
+        return matchesSearchQuery && matchesFilters;
     });
 
     renderGallery(filteredWebsites);
@@ -281,6 +294,56 @@ document.addEventListener("DOMContentLoaded", async function () {
     document
         .getElementById("searchInput")
         .addEventListener("input", debounce(filterWebsites, 300));
+
+    // Initialize autocomplete functionality
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener(
+        "input",
+        debounce(() => {
+            const inputValue = searchInput.value;
+            createAutocompleteSuggestions(inputValue); // Show autocomplete suggestions
+            filterWebsites(); // Filter websites
+        }, 300)
+    );
+
+    searchInput.addEventListener("focus", () => {
+        const inputValue = searchInput.value;
+        createAutocompleteSuggestions(inputValue); // Show suggestions on focus
+    });
+
+    searchInput.addEventListener("blur", () => {
+        setTimeout(() => {
+            document.getElementById("autocompleteContainer").innerHTML = ""; // Clear suggestions on blur after a short delay
+        }, 100);
+    });
+
+    // Initialize function to handle updates to the active button
+    function handleActiveButtonUpdate(tag) {
+        const commonTagsContainer = document.getElementById(
+            "commonTagsContainer"
+        );
+        const filterMenu = document.getElementById("filterMenu");
+
+        // Remove active class from all buttons
+        const allTags = commonTagsContainer.querySelectorAll(".filter-tag");
+        allTags.forEach((el) => {
+            el.classList.remove("active");
+        });
+
+        const filterTags = filterMenu.querySelectorAll(".filter-tag");
+        filterTags.forEach((el) => {
+            el.classList.remove("active");
+        });
+
+        // Add active class to the clicked button
+        const clickedButton =
+            Array.from(allTags).find((el) => el.textContent === tag) ||
+            Array.from(filterTags).find((el) => el.textContent === tag);
+
+        if (clickedButton) {
+            clickedButton.classList.add("active");
+        }
+    }
 
     // Calculate and display the most common tags
     const tagCount = {};
