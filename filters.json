@@ -2,6 +2,7 @@
     {
         "category": "Type",
         "options": [
+            "Active",
             "App",
             "Photography",
             "Portfolio",
@@ -27,7 +28,7 @@
             "Beta",
             "Books & Literature",
             "Broadcast",
-            "Cafés, Bars & Restaurants",
+            "Cafes, Bars & Restaurants",
             "Calendar",
             "Case Studies",
             "Catalog",
@@ -70,6 +71,7 @@
             "Home & Living",
             "Hotels & Venues",
             "Hospitality",
+            "Inative",
             "Inspiration",
             "Innovation",
             "Interior Design & Decor",
@@ -304,8 +306,6 @@
             "Squarespace",
             "Webflow",
             "Wix",
-            "Squarespace 7.0",
-            "Squarespace 7.1",
             "Magento",
             "Drupal",
             "Joomla",

@@ -1,4 +1,7 @@
 // import { gsap } from "gsap";
+import { injectSpeedInsights } from "@vercel/speed-insights";
+
+injectSpeedInsights();
 
 // Cache variables
 let websitesCache = [];
