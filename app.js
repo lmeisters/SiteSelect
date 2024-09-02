@@ -418,15 +418,121 @@ document.addEventListener("scroll", function () {
     }
 });
 
-// Preloader
 window.onload = function () {
+    // Preloader animation
     document.querySelector(".loader-slide").classList.add("open");
 
-    // Optionally, hide the preloader and show the main content after the animation
-    setTimeout(function () {
-        document.getElementById("preloader").style.display = "none";
+    // Get the scrollbar width to handle content shift
+    const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
 
-        // Remove the preloader-active class to show the scrollbar if needed
+    // Start animations earlier, while preloader is still running
+    setTimeout(function () {
+        startAnimations(); // Start GSAP animations
+    }, 1000); // Delay animations
+
+    // Hide the preloader and show the main content
+    setTimeout(function () {
+        // Allow scrollbar and make adjustments
         document.body.classList.remove("preloader-active");
-    }, 2000); // 1s animation duration + 1s delay
+
+        // Smoothly adjust the body's width back to account for scrollbar
+        document.body.style.paddingRight = "0px"; // Reset padding for scrollbar
+        document.body.style.width = "calc(100% - " + scrollbarWidth + "px)"; // Adjust width
+
+        // Use GSAP to make sure it transitions smoothly
+        gsap.to(document.body, {
+            width: "100%", // Reset width to normal
+            duration: 0.5, // Duration for the transition
+            ease: "power2.out", // Smooth easing
+        });
+
+        // Hide the preloader after the transition
+        document.getElementById("preloader").style.display = "none";
+    }, 2000); // Total time for preloader to complete
 };
+
+function startAnimations() {
+    // Create a GSAP timeline for sequencing animations
+    const tl = gsap.timeline();
+
+    // Animate the nav item
+    tl.from(".nav-item", {
+        opacity: 0, // Start from transparent
+        y: -20, // Start 20px above its original position
+        duration: 0.5, // Quicker duration of 0.5 seconds
+        ease: "power2.out", // Smooth easing function
+    });
+
+    // Animate the main header (h1)
+    tl.from(
+        "h1",
+        {
+            opacity: 0, // Start from transparent
+            y: 20, // Start 20px below its original position
+            duration: 0.5, // Quicker duration of 0.5 seconds
+            ease: "power2.out", // Smooth easing function
+        },
+        "-=0.3"
+    ); // Start this animation 0.3 seconds before the previous one ends
+
+    // Animate the secondary header (h2)
+    tl.from(
+        ".header-headings h2",
+        {
+            opacity: 0, // Start from transparent
+            y: 20, // Start 20px below its original position
+            duration: 0.7, // Slightly longer but quicker duration of 0.7 seconds
+            ease: "power2.out", // Smooth easing function
+            stagger: 0.1, // Shorter stagger for quicker animation
+        },
+        "-=0.4"
+    ); // Start this animation 0.4 seconds before the previous one ends
+
+    // Animate the filter button and tags container
+    tl.from(
+        "#filterButton",
+        {
+            opacity: 0, // Start from transparent
+            y: 20, // Start 20px below its original position
+            duration: 0.5, // Quicker duration of 0.5 seconds
+            ease: "power2.out", // Smooth easing function
+        },
+        "-=0.3"
+    ); // Start this animation 0.3 seconds before the previous one ends
+
+    tl.from(
+        "#commonTagsContainer",
+        {
+            opacity: 0, // Start from transparent
+            y: 20, // Start 20px below its original position
+            duration: 0.5, // Quicker duration of 0.5 seconds
+            ease: "power2.out", // Smooth easing function
+        },
+        "-=0.3"
+    ); // Start this animation 0.3 seconds before the previous one ends
+
+    // Animate the hr divider
+    tl.from(
+        ".filter-divider",
+        {
+            opacity: 0, // Start from transparent
+            scaleX: 0, // Start from zero width
+            duration: 0.5, // Quicker duration of 0.5 seconds
+            ease: "power2.out", // Smooth easing function
+        },
+        "-=0.3"
+    ); // Start this animation 0.3 seconds before the previous one ends
+
+    // Animate the filter menu (if it's being shown dynamically)
+    tl.from(
+        "#filterMenu",
+        {
+            opacity: 0, // Start from transparent
+            y: 10, // Start 10px below its original position
+            duration: 0.5, // Quicker duration of 0.5 seconds
+            ease: "power2.out", // Smooth easing function
+        },
+        "-=0.3"
+    ); // Start this animation 0.3 seconds before the previous one ends
+}

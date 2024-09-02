@@ -15,7 +15,7 @@
     --font-size-large: 2rem; /* 32px */
     --font-size-medium: 1.5rem; /* 24px */
     --font-size-small: 1rem; /* 16px */
-    
+
     --padding-large: 2.5rem; /* 32px */
     --padding-medium: 1.5rem; /* 24px */
     --padding-small: 1rem; /* 16px */
@@ -33,6 +33,7 @@
 
 html {
     scroll-behavior: smooth;
+    /* overflow-y: scroll; */
 
     /* Firefox Scrollbar Styling*/
     scrollbar-color: var(--color-text) var(--color-background); /* thumb color, track color */
@@ -46,7 +47,7 @@ body {
     margin: 0;
 
     overflow-y: auto; /* Ensure scrollbars are allowed to reappear */
-    transition: padding-right 0.5s ease; /* Smooth transition for scrollbar space */
+    transition: width 0.5s ease, padding-right 0.5s ease; /* Smooth transition for scrollbar space */
 }
 
 main {
@@ -478,6 +479,8 @@ footer {
 /* Preloader Styling */
 body.preloader-active {
     overflow: hidden; /* Hide scrollbar */
+    width: 100vw; /* Set the width to full viewport width */
+    padding-right: 0; /* No padding when scrollbar is hidden */
 }
 
 #preloader {
