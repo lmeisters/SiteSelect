@@ -703,6 +703,7 @@ body.preloader-active {
 
     h1 {
         font-size: 3.5rem;
+        margin-top: 1.5rem;
     }
 
     .info-container {
