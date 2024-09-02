@@ -70,30 +70,32 @@ async function loadFilters() {
     }
 }
 
-// Function to create a website card
 function createWebsiteCard(website) {
-    const card = document.createElement("div");
-    card.className = "website-card";
-    const topTags = website.tags.slice(0, 3);
+    const template = document.getElementById("website-card-template");
+    const card = document.importNode(template.content, true);
 
-    card.innerHTML = `
-        <a href="${website.url}" target="_blank" class="website-image-link">
-            <img src="${website.imageUrl}" alt="${website.name} Thumbnail">
-        </a>
-        <div class="website-info">
-            <hr />
-            <div class="website-info-block">
-                <h3 class="website-name">${website.name}</h3>
-                <p class="website-tags">
-                    <span>${topTags[0] || ""}</span>
-                    <span>${topTags[1] || ""}</span>
-                    <span>${topTags[2] || ""}</span>
-                </p>
-            </div>
-            <hr />
-            <p class="website-summary">${website.summary}</p>
-        </div>
-    `;
+    // Populate the template
+    const link = card.querySelector(".website-image-link");
+    link.href = website.url;
+
+    const image = link.querySelector("img");
+    image.src = website.imageUrl;
+    image.alt = `${website.name} Thumbnail`;
+
+    const nameHeader = card.querySelector(".website-name");
+    nameHeader.textContent = website.name;
+
+    const tagsParagraph = card.querySelector(".website-tags");
+    const topTags = website.tags.slice(0, 3);
+    topTags.forEach((tag) => {
+        const tagSpan = document.createElement("span");
+        tagSpan.textContent = tag;
+        tagsParagraph.appendChild(tagSpan);
+    });
+
+    const summaryParagraph = card.querySelector(".website-summary");
+    summaryParagraph.textContent = website.summary;
+
     return card;
 }
 
