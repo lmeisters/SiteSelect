@@ -33,7 +33,7 @@
 
 html {
     scroll-behavior: smooth;
-    /* overflow-y: scroll; */
+    /* overflow-x: hidden; */
 
     /* Firefox Scrollbar Styling*/
     scrollbar-color: var(--color-text) var(--color-background); /* thumb color, track color */
@@ -46,7 +46,8 @@ body {
     color: var(--color-text);
     margin: 0;
 
-    overflow-y: auto; /* Ensure scrollbars are allowed to reappear */
+    overflow: hidden;
+    /* overflow-y: auto; Ensure scrollbars are allowed to reappear */
     transition: width 0.5s ease, padding-right 0.5s ease; /* Smooth transition for scrollbar space */
 }
 
@@ -463,6 +464,7 @@ footer {
 
 .info-section p {
     margin-top: 1rem;
+    text-align: justify;
 }
 
 .error-container {
@@ -585,6 +587,26 @@ body.preloader-active {
     .filter-category h4,
     .filter-category span {
         font-size: var(--font-size-larger);
+    }
+
+    #searchToggle {
+        font-size: var(--font-size-larger);
+        margin-top: 2rem;
+    }
+
+    .navbar .container {
+        padding: 0 24px;
+        height: 60px;
+        align-items: center;
+    }
+
+    .info-section {
+        font-size: var(--font-size-large);
+        max-width: 800px;
+    }
+
+    .logo {
+        font-size: var(--font-size-large);
     }
 }
 

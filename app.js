@@ -337,24 +337,20 @@ document.addEventListener("DOMContentLoaded", async function () {
         const filterMenu = document.getElementById("filterMenu");
 
         // Remove active class from all buttons
-        const allTags = commonTagsContainer.querySelectorAll(".filter-tag");
-        allTags.forEach((el) => {
-            el.classList.remove("active");
-        });
-
-        const filterTags = filterMenu.querySelectorAll(".filter-tag");
-        filterTags.forEach((el) => {
-            el.classList.remove("active");
-        });
+        commonTagsContainer
+            .querySelectorAll(".filter-tag")
+            .forEach((el) => el.classList.remove("active"));
+        filterMenu
+            .querySelectorAll(".filter-tag")
+            .forEach((el) => el.classList.remove("active"));
 
         // Add active class to the clicked button
-        const clickedButton =
-            Array.from(allTags).find((el) => el.textContent === tag) ||
-            Array.from(filterTags).find((el) => el.textContent === tag);
+        const clickedButton = [
+            ...commonTagsContainer.querySelectorAll(".filter-tag"),
+            ...filterMenu.querySelectorAll(".filter-tag"),
+        ].find((el) => el.textContent === tag);
 
-        if (clickedButton) {
-            clickedButton.classList.add("active");
-        }
+        if (clickedButton) clickedButton.classList.add("active");
     }
 
     // Calculate and display the most common tags
@@ -433,23 +429,15 @@ window.onload = function () {
 
     // Hide the preloader and show the main content
     setTimeout(function () {
-        // Allow scrollbar and make adjustments
-        document.body.classList.remove("preloader-active");
+        // Remove the preloader
+        const preloader = document.getElementById("preloader");
+        preloader.style.display = "none";
 
-        // Smoothly adjust the body's width back to account for scrollbar
-        document.body.style.paddingRight = "0px"; // Reset padding for scrollbar
-        document.body.style.width = "calc(100% - " + scrollbarWidth + "px)"; // Adjust width
+        // Allow scrolling by removing overflow: hidden from body
+        document.body.style.overflowY = "auto";
 
-        // Use GSAP to make sure it transitions smoothly
-        gsap.to(document.body, {
-            width: "100%", // Reset width to normal
-            duration: 0.5, // Duration for the transition
-            ease: "power2.out", // Smooth easing
-        });
-
-        // Hide the preloader after the transition
-        document.getElementById("preloader").style.display = "none";
-    }, 2000); // Total time for preloader to complete
+        // Show the main content
+    }, 2000); // 2000ms = 2 seconds; adjust to simulate load time
 };
 
 function startAnimations() {
