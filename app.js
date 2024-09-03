@@ -151,6 +151,28 @@ function renderFilters() {
     });
 }
 
+// Initialize function to handle updates to the active button
+function handleActiveButtonUpdate(tag) {
+    const commonTagsContainer = document.getElementById("commonTagsContainer");
+    const filterMenu = document.getElementById("filterMenu");
+
+    // Remove active class from all buttons
+    commonTagsContainer
+        .querySelectorAll(".filter-tag")
+        .forEach((el) => el.classList.remove("active"));
+    filterMenu
+        .querySelectorAll(".filter-tag")
+        .forEach((el) => el.classList.remove("active"));
+
+    // Add active class to the clicked button
+    const clickedButton = [
+        ...commonTagsContainer.querySelectorAll(".filter-tag"),
+        ...filterMenu.querySelectorAll(".filter-tag"),
+    ].find((el) => el.textContent === tag);
+
+    if (clickedButton) clickedButton.classList.add("active");
+}
+
 // Function to toggle filter state and update display
 function toggleFilter(tag) {
     const filterMenu = document.getElementById("filterMenu");
@@ -158,34 +180,26 @@ function toggleFilter(tag) {
     const allTags = filterMenu.querySelectorAll(".filter-tag");
     const commonTags = commonTagsContainer.querySelectorAll(".filter-tag");
 
-    // Clear active state from all tags before setting the clicked one
-    allTags.forEach((el) => {
-        el.classList.remove("active");
-    });
-
-    commonTags.forEach((el) => {
-        el.classList.remove("active");
-    });
-
-    // Handle filter reset on double click
+    // Find the clicked tag element
     const clickedTag =
         Array.from(allTags).find((el) => el.textContent === tag) ||
         Array.from(commonTags).find((el) => el.textContent === tag);
 
     if (clickedTag) {
         if (clickedTag.classList.contains("active")) {
-            // If already active, reset filters
-            selectedFilters.clear();
-            renderGallery(websites); // Reset to show all websites
-            handleActiveButtonUpdate("All");
+            // If the clicked tag is already active, deactivate it
+            clickedTag.classList.remove("active");
+            selectedFilters.delete(tag); // Remove tag from selected filters
         } else {
-            // Otherwise, apply new filter
+            // Otherwise, activate the tag
             clickedTag.classList.add("active");
-            selectedFilters.clear();
-            selectedFilters.add(tag);
-            filterWebsites();
+            selectedFilters.clear(); // Clear any other active filters (if necessary)
+            selectedFilters.add(tag); // Add this tag to selected filters
             handleActiveButtonUpdate(tag);
         }
+
+        // Update the gallery based on the selected filters
+        filterWebsites();
     }
 }
 
@@ -328,30 +342,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("autocompleteContainer").innerHTML = ""; // Clear suggestions on blur after a short delay
         }, 100);
     });
-
-    // Initialize function to handle updates to the active button
-    function handleActiveButtonUpdate(tag) {
-        const commonTagsContainer = document.getElementById(
-            "commonTagsContainer"
-        );
-        const filterMenu = document.getElementById("filterMenu");
-
-        // Remove active class from all buttons
-        commonTagsContainer
-            .querySelectorAll(".filter-tag")
-            .forEach((el) => el.classList.remove("active"));
-        filterMenu
-            .querySelectorAll(".filter-tag")
-            .forEach((el) => el.classList.remove("active"));
-
-        // Add active class to the clicked button
-        const clickedButton = [
-            ...commonTagsContainer.querySelectorAll(".filter-tag"),
-            ...filterMenu.querySelectorAll(".filter-tag"),
-        ].find((el) => el.textContent === tag);
-
-        if (clickedButton) clickedButton.classList.add("active");
-    }
 
     // Calculate and display the most common tags
     const tagCount = {};
