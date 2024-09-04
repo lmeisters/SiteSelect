@@ -5,13 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="SiteSelect - Discover a curated collection of stunning websites for instant inspiration and innovative design ideas to elevate your web design projects."
+            content="Discover expertly curated design galleries to elevate your web projects with innovative inspiration and stunning examples."
         />
         <meta
             name="keywords"
-            content="web design, website inspiration, curated websites, design ideas, SiteSelect"
+            content="design galleries, web design inspiration, visual references, creative projects"
         />
         <link rel="stylesheet" href="app.css" />
+        <link rel="preload" href="app.css" as="style" />
         <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -29,7 +30,7 @@
             sizes="16x16"
             href="favicon/favicon-16x16.png"
         />
-        <!-- <link rel="manifest" href="/site.webmanifest" /> -->
+        <link rel="canonical" href="https://yourwebsite.com" />
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
             defer
@@ -79,23 +80,16 @@
             <div id="filter-container">
                 <div class="filter-container-buttons">
                     <button id="filterButton">Filter</button>
-
-                    <!-- Common tags section -->
-                    <div class="common-tags" id="commonTagsContainer">
-                        <!-- Common tags will be dynamically generated here -->
-                    </div>
+                    <div class="common-tags" id="commonTagsContainer"></div>
                 </div>
-
                 <hr class="filter-divider" />
-
                 <div id="filterMenu" style="display: none"></div>
-                <!-- Filters will be dynamically generated here -->
             </div>
 
             <template id="website-card-template">
                 <div class="website-card">
                     <a href="#" target="_blank" class="website-image-link">
-                        <img src="" alt="Thumbnail" />
+                        <img src="" alt="Website Thumbnail" />
                         <div class="visit-overlay">Visit</div>
                     </a>
                     <div class="website-info">
@@ -110,13 +104,10 @@
                 </div>
             </template>
 
-            <div id="gallery" class="gallery-container">
-                <!-- Website cards will be dynamically generated here -->
-            </div>
+            <div id="gallery" class="gallery-container"></div>
 
             <button id="loadMoreButton">Load more</button>
 
-            <!-- Error message container -->
             <div id="error-message" style="display: none">
                 <p>
                     No results found. Please try a different filter or search
@@ -127,7 +118,8 @@
             <div class="info-container">
                 <a class="info-btn" href="/info.html">Info</a>
                 <p>
-                    Submit more website inspirations <span class="dash">-</span>
+                    Submit more website inspirations
+                    <span class="dash">-</span>
                     <a class="email" href="mailto:siteselect@gmail.com"
                         >siteselect@gmail.com</a
                     >

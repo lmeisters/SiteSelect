@@ -149,12 +149,12 @@ h3 {
     margin: 1rem 0 0 0;
 }
 
-/* h4 {
+h4 {
     font-family: var(--font-secondary);
     font-weight: 600;
     font-size: 20px;
     margin-top: var(--margin-small) 0;
-} */
+}
 
 p {
     margin: 0;
@@ -614,6 +614,24 @@ footer {
 /* Responsive Styles */
 /* --------------------------------- */
 
+/* Very wide screens (1920px and up) */
+@media (min-width: 1920px) and (min-height: 1080px) {
+    #filterMenu {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 48px;
+    }
+
+    #filterButton,
+    .filter-tag {
+        font-size: var(--font-size-large);
+    }
+
+    .filter-category h4,
+    .filter-category span {
+        font-size: var(--font-size-medium);
+    }
+}
+
 /* Ultra-wide screens (2560px and up) */
 @media (min-width: 2560px) {
     #filterButton,
@@ -644,24 +662,6 @@ footer {
 
     .logo {
         font-size: var(--font-size-large);
-    }
-}
-
-/* Very wide screens (1920px and up) */
-@media (min-width: 1920px) and (min-height: 1080px) {
-    #filterMenu {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 48px;
-    }
-
-    #filterButton,
-    .filter-tag {
-        font-size: var(--font-size-large);
-    }
-
-    .filter-category h4,
-    .filter-category span {
-        font-size: var(--font-size-medium);
     }
 }
 
@@ -820,5 +820,11 @@ footer {
 
     #commonTagsContainer .filter-tag {
         display: none; /* Hide all tags after the fourth one */
+    }
+    .container-logo {
+        padding: 1rem;
+    }
+    .info-section {
+        padding: 1rem;
     }
 }

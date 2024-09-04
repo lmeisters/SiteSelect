@@ -1,9 +1,9 @@
 // Cache variables
 let websitesCache = [];
 let filterOptionsCache = [];
-let allTags = new Set(); // To store all unique tags for autocomplete
+let allTags = new Set(); // Store unique tags for autocomplete
 
-// Function to load data with caching
+// Load data with caching
 async function loadData() {
     if (websitesCache.length > 0) return websitesCache;
 
@@ -23,7 +23,7 @@ async function loadData() {
     }
 }
 
-// Function to create autocomplete suggestions based on user input
+// Create autocomplete suggestions based on user input
 function createAutocompleteSuggestions(input) {
     const autocompleteContainer = document.getElementById(
         "autocompleteContainer"
@@ -54,7 +54,7 @@ function createAutocompleteSuggestions(input) {
     });
 }
 
-// Function to load filters with caching
+// Load filters with caching
 async function loadFilters() {
     if (filterOptionsCache.length > 0) return filterOptionsCache;
 
@@ -97,14 +97,14 @@ function createWebsiteCard(website) {
     return card;
 }
 
-// Initialize variables
+// Variables
 let displayedWebsitesCount = 0;
 const websitesPerPage = 9;
 let websites = [];
 let filterOptions = [];
 const selectedFilters = new Set();
 
-// Function to render the gallery
+// Render the gallery
 function renderGallery(filteredWebsites = websites) {
     const gallery = document.getElementById("gallery");
     const loadMoreButton = document.getElementById("loadMoreButton");
@@ -121,13 +121,13 @@ function renderGallery(filteredWebsites = websites) {
         displayedWebsitesCount >= filteredWebsites.length ? "none" : "block";
 }
 
-// Function to handle loading more websites
+// Load more websites
 function loadMoreWebsites() {
     displayedWebsitesCount += websitesPerPage;
     filterWebsites();
 }
 
-// Function to render filters dynamically in the menu
+// Render filters dynamically in the menu
 function renderFilters() {
     const filterMenu = document.getElementById("filterMenu");
     filterMenu.innerHTML = "";
@@ -151,7 +151,7 @@ function renderFilters() {
     });
 }
 
-// Initialize function to handle updates to the active button
+// Handle active button update
 function handleActiveButtonUpdate(tag) {
     const commonTagsContainer = document.getElementById("commonTagsContainer");
     const filterMenu = document.getElementById("filterMenu");
@@ -173,7 +173,7 @@ function handleActiveButtonUpdate(tag) {
     if (clickedButton) clickedButton.classList.add("active");
 }
 
-// Function to toggle filter state and update display
+// Toggle filter state and update display
 function toggleFilter(tag) {
     const filterMenu = document.getElementById("filterMenu");
     const commonTagsContainer = document.getElementById("commonTagsContainer");
@@ -203,7 +203,7 @@ function toggleFilter(tag) {
     }
 }
 
-// Function to filter websites by tags and search input
+// Filter websites by tags and search input
 function filterWebsites() {
     const searchQuery = document
         .getElementById("searchInput")
@@ -234,7 +234,7 @@ function filterWebsites() {
     }
 }
 
-// Function to toggle the visibility of the filter menu
+// Toggle the visibility of the filter menu
 function toggleFilterMenu() {
     const filterMenu = document.getElementById("filterMenu");
     const isOpen = filterMenu.style.display === "inline-flex";
@@ -251,7 +251,7 @@ function toggleFilterMenu() {
     }
 }
 
-// Function to toggle search bar visibility
+// Toggle search bar visibility
 function toggleSearchBar() {
     const searchContainer = document.getElementById("searchContainer");
     searchContainer.style.display =
@@ -384,7 +384,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 document.addEventListener("scroll", function () {
     const footerHeading = document.querySelector(".h1-footer");
     const windowHeight = window.innerHeight;
-    const isMobile = windowHeight <= 768; // Example breakpoint for mobile
 
     // Get the height of the document and the scroll position
     const scrollPosition = window.scrollY;
@@ -399,6 +398,7 @@ document.addEventListener("scroll", function () {
     footerHeading.style.transform = newTransform;
 });
 
+// Preloader and animations
 window.onload = function () {
     // Preloader animation
     document.querySelector(".loader-slide").classList.add("open");
@@ -409,110 +409,91 @@ window.onload = function () {
 
     // Start animations earlier, while preloader is still running
     setTimeout(function () {
-        startAnimations(); // Start GSAP animations
+        startAnimations();
     }, 1000); // Delay animations
 
     // Hide the preloader and show the main content
     setTimeout(function () {
-        // Remove the preloader
         const preloader = document.getElementById("preloader");
         preloader.style.display = "none";
 
-        // Allow scrolling by removing overflow: hidden from body
         document.body.style.overflowY = "auto";
 
-        // Trigger CSS animations after preloader is hidden
         const websiteCards = document.querySelectorAll(".website-card");
         websiteCards.forEach((card, index) => {
             setTimeout(function () {
-                card.offsetHeight; // Force reflow
-                card.classList.add("visible"); // Add class to trigger CSS animation
-            }, 100 * index); // Staggering effect: delay based on the card's index
-        }); // Small delay to ensure elements are ready
-    }, 2000); // 2000ms = 2 seconds; adjust to simulate load time
+                card.offsetHeight;
+                card.classList.add("visible");
+            }, 100 * index);
+        });
+    }, 2000);
 };
 
+// Start GSAP animations
 function startAnimations() {
-    // Create a GSAP timeline for sequencing animations
     const tl = gsap.timeline();
 
-    // Animate the nav item
     tl.from(".nav-item", {
         opacity: 0,
-        y: -20, // Start 20px above its original position
-        duration: 0.5, // Quicker duration of 0.5 seconds
-        ease: "power2.out", // Smooth easing function
-    });
-
-    // Animate the main header (h1)
-    tl.from(
-        "h1",
-        {
+        y: -20,
+        duration: 0.5,
+        ease: "power2.out",
+    })
+        .from(
+            "h1",
+            {
+                opacity: 0,
+                y: 20,
+                duration: 0.5,
+                ease: "power2.out",
+            },
+            "-=0.3"
+        )
+        .from(
+            ".header-headings h2",
+            {
+                opacity: 0,
+                y: 20,
+                duration: 0.7,
+                ease: "power2.out",
+                stagger: 0.1,
+            },
+            "-=0.4"
+        )
+        .from(
+            "#filterButton",
+            {
+                opacity: 0,
+                y: 20,
+                duration: 0.5,
+                ease: "power2.out",
+            },
+            "-=0.3"
+        )
+        .from(
+            "#commonTagsContainer",
+            {
+                opacity: 0,
+                y: 20,
+                duration: 0.5,
+                ease: "power2.out",
+            },
+            "-=0.3"
+        )
+        .from(
+            ".filter-divider",
+            {
+                opacity: 0,
+                scaleX: 0,
+                duration: 0.5,
+                ease: "power2.out",
+            },
+            "-=0.3"
+        )
+        .from("#filterMenu", {
             opacity: 0,
-            y: 20, // Start 20px below its original position
-            duration: 0.5, // Quicker duration of 0.5 seconds
-            ease: "power2.out", // Smooth easing function
-        },
-        "-=0.3"
-    ); // Start this animation 0.3 seconds before the previous one ends
-
-    // Animate the secondary header (h2)
-    tl.from(
-        ".header-headings h2",
-        {
-            opacity: 0,
-            y: 20, // Start 20px below its original position
-            duration: 0.7, // Slightly longer but quicker duration of 0.7 seconds
-            ease: "power2.out", // Smooth easing function
-            stagger: 0.1, // Shorter stagger for quicker animation
-        },
-        "-=0.4"
-    ); // Start this animation 0.4 seconds before the previous one ends
-
-    // Animate the filter button and tags container
-    tl.from(
-        "#filterButton",
-        {
-            opacity: 0,
-            y: 20, // Start 20px below its original position
-            duration: 0.5, // Quicker duration of 0.5 seconds
-            ease: "power2.out", // Smooth easing function
-        },
-        "-=0.3"
-    ); // Start this animation 0.3 seconds before the previous one ends
-
-    tl.from(
-        "#commonTagsContainer",
-        {
-            opacity: 0,
-            y: 20, // Start 20px below its original position
-            duration: 0.5, // Quicker duration of 0.5 seconds
-            ease: "power2.out", // Smooth easing function
-        },
-        "-=0.3"
-    ); // Start this animation 0.3 seconds before the previous one ends
-
-    // Animate the hr divider
-    tl.from(
-        ".filter-divider",
-        {
-            opacity: 0,
-            scaleX: 0, // Start from zero width
-            duration: 0.5, // Quicker duration of 0.5 seconds
-            ease: "power2.out", // Smooth easing function
-        },
-        "-=0.3"
-    ); // Start this animation 0.3 seconds before the previous one ends
-
-    // Animate the filter menu (if it's being shown dynamically)
-    tl.from(
-        "#filterMenu",
-        {
-            opacity: 0,
-            y: 10, // Start 10px below its original position
-            duration: 0.5, // Quicker duration of 0.5 seconds
-            ease: "power2.out", // Smooth easing function
-        },
-        "-=0.3"
-    );
+            y: 10,
+            duration: 0.5,
+            ease: "power2.out",
+        });
 }
