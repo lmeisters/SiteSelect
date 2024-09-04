@@ -4,19 +4,24 @@ SiteSelect is a curated platform offering a collection of the web's most innovat
 
 ## Features
 
-- **Curated Design Galleries**: Handpicked design examples from across the web.
-- **Advanced Search & Filtering**: Easily find inspiration with powerful search and filter tools.
-- **Responsive Design**: Seamlessly browse on any device.
-- **Dynamic Tag System**: Quickly explore popular design topics and trends.
-- **Intuitive Navigation**: User-friendly interface with easy access to a wealth of creative resources.
+-   **Curated Design Galleries**: Handpicked design examples from across the web.
+-   **Advanced Search & Filtering**: Easily find inspiration with powerful search and filter tools.
+-   **Responsive Design**: Seamlessly browse on any device.
+-   **Dynamic Content Loading**: Fetches and displays website data from a JSON file.
 
 ### Usage
 
-- **Search**: Use the search bar to find specific design inspirations.
-- **Filter**: Apply filters to narrow down galleries by categories or tags.
-- **Explore**: Browse through the curated galleries to find fresh ideas for your projects.
-- **Submit**: Contribute by submitting your favorite design inspirations via email.
-                           
-                      
-                            
+-   **Search**: Use the search bar to find specific design inspirations.
+-   **Filter**: Apply filters to narrow down galleries by categories or tags.
+-   **Explore**: Browse through the curated galleries to find fresh ideas for your projects.
+-   **Submit**: Contribute by submitting your favorite design inspirations via email.
 
+### Technologies Used
+
+-   **JavaScript**: Used for core programming, interactive functionality, and DOM manipulation.
+-   **HTML**: Provides structure and elements such as buttons and containers.
+-   **CSS**: Manages styling and animations for a polished look and feel.
+-   **GSAP (GreenSock Animation Platform)**: Handles advanced animations and transitions.
+-   **Fetch API**: Used to load data from external JSON files asynchronously.
+-   **Debounce Function**: Optimizes input handling and reduces the frequency of function calls.
+-   **Async/Await**: Facilitates handling of asynchronous operations and data fetching.
