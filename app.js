@@ -393,15 +393,10 @@ document.addEventListener("scroll", function () {
     const scrollPercent = scrollPosition / (documentHeight - windowHeight);
 
     const newOpacity = Math.min(0.1 + scrollPercent * 0.9, 1);
-    const newTransform = `translate3d(0, ${scrollPercent * 50}px, 0) scale(1)`;
+    const newTransform = `translate3d(0, ${scrollPercent * 10}px, 0) scale(1)`;
 
     footerHeading.style.opacity = newOpacity;
     footerHeading.style.transform = newTransform;
-
-    // Optional: Adjust styles for mobile
-    if (isMobile) {
-        footerHeading.style.fontSize = "2rem"; // Example adjustment for mobile
-    }
 });
 
 window.onload = function () {
@@ -426,7 +421,14 @@ window.onload = function () {
         // Allow scrolling by removing overflow: hidden from body
         document.body.style.overflowY = "auto";
 
-        // Show the main content
+        // Trigger CSS animations after preloader is hidden
+        const websiteCards = document.querySelectorAll(".website-card");
+        websiteCards.forEach((card, index) => {
+            setTimeout(function () {
+                card.offsetHeight; // Force reflow
+                card.classList.add("visible"); // Add class to trigger CSS animation
+            }, 100 * index); // Staggering effect: delay based on the card's index
+        }); // Small delay to ensure elements are ready
     }, 2000); // 2000ms = 2 seconds; adjust to simulate load time
 };
 
@@ -436,7 +438,7 @@ function startAnimations() {
 
     // Animate the nav item
     tl.from(".nav-item", {
-        opacity: 0, // Start from transparent
+        opacity: 0,
         y: -20, // Start 20px above its original position
         duration: 0.5, // Quicker duration of 0.5 seconds
         ease: "power2.out", // Smooth easing function
@@ -446,7 +448,7 @@ function startAnimations() {
     tl.from(
         "h1",
         {
-            opacity: 0, // Start from transparent
+            opacity: 0,
             y: 20, // Start 20px below its original position
             duration: 0.5, // Quicker duration of 0.5 seconds
             ease: "power2.out", // Smooth easing function
@@ -458,7 +460,7 @@ function startAnimations() {
     tl.from(
         ".header-headings h2",
         {
-            opacity: 0, // Start from transparent
+            opacity: 0,
             y: 20, // Start 20px below its original position
             duration: 0.7, // Slightly longer but quicker duration of 0.7 seconds
             ease: "power2.out", // Smooth easing function
@@ -471,7 +473,7 @@ function startAnimations() {
     tl.from(
         "#filterButton",
         {
-            opacity: 0, // Start from transparent
+            opacity: 0,
             y: 20, // Start 20px below its original position
             duration: 0.5, // Quicker duration of 0.5 seconds
             ease: "power2.out", // Smooth easing function
@@ -482,7 +484,7 @@ function startAnimations() {
     tl.from(
         "#commonTagsContainer",
         {
-            opacity: 0, // Start from transparent
+            opacity: 0,
             y: 20, // Start 20px below its original position
             duration: 0.5, // Quicker duration of 0.5 seconds
             ease: "power2.out", // Smooth easing function
@@ -494,7 +496,7 @@ function startAnimations() {
     tl.from(
         ".filter-divider",
         {
-            opacity: 0, // Start from transparent
+            opacity: 0,
             scaleX: 0, // Start from zero width
             duration: 0.5, // Quicker duration of 0.5 seconds
             ease: "power2.out", // Smooth easing function
@@ -506,11 +508,11 @@ function startAnimations() {
     tl.from(
         "#filterMenu",
         {
-            opacity: 0, // Start from transparent
+            opacity: 0,
             y: 10, // Start 10px below its original position
             duration: 0.5, // Quicker duration of 0.5 seconds
             ease: "power2.out", // Smooth easing function
         },
         "-=0.3"
-    ); // Start this animation 0.3 seconds before the previous one ends
+    );
 }

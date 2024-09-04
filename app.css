@@ -1,7 +1,13 @@
+/* --------------------------------- */
 /* Importing Fonts */
+/* --------------------------------- */
+
 @import url("https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
+/* --------------------------------- */
 /* Global CSS Variables */
+/* --------------------------------- */
+
 :root {
     --font-primary: "Anton", sans-serif;
     --font-secondary: "Inter", sans-serif;
@@ -24,7 +30,10 @@
     --margin-small: 0.5rem; /* 8px */
 }
 
+/* --------------------------------- */
 /* General Styling */
+/* --------------------------------- */
+
 *,
 *::before,
 *::after {
@@ -33,7 +42,6 @@
 
 html {
     scroll-behavior: smooth;
-    /* overflow-x: hidden; */
 
     /* Firefox Scrollbar Styling*/
     scrollbar-color: var(--color-text) var(--color-background); /* thumb color, track color */
@@ -45,10 +53,8 @@ body {
     background-color: var(--color-background);
     color: var(--color-text);
     margin: 0;
-
     overflow: hidden;
-    /* overflow-y: auto; Ensure scrollbars are allowed to reappear */
-    transition: width 0.5s ease, padding-right 0.5s ease; /* Smooth transition for scrollbar space */
+    transition: width 0.5s ease, padding-right 0.5s ease;
 }
 
 main {
@@ -69,17 +75,24 @@ main {
     color: var(--color-background);
 }
 
-/* Header Styling */
-header {
-    display: flex;
+a {
+    text-decoration: none;
+    color: var(--color-text);
 }
 
-.header-headings {
+a:hover {
+    text-decoration: underline;
+}
+
+/* --------------------------------- */
+/* Header & Navbar */
+/* --------------------------------- */
+
+header {
     display: flex;
     align-items: center;
 }
 
-/* Navbar Styling */
 .navbar {
     position: fixed;
     top: 0;
@@ -106,14 +119,15 @@ header {
 .logo {
     font-size: var(--font-size-small);
     font-weight: 800;
-    text-decoration: none;
 }
 
 .logo:hover {
     text-decoration: none;
 }
 
-/* Heading Styles */
+/* --------------------------------- */
+/* Typography */
+/* --------------------------------- */
 h1 {
     font-family: var(--font-primary);
     font-weight: 400;
@@ -135,56 +149,43 @@ h3 {
     margin: 1rem 0 0 0;
 }
 
-h4 {
+/* h4 {
     font-family: var(--font-secondary);
     font-weight: 600;
     font-size: 20px;
-    margin-top: var(--margin-small);
-    margin-bottom: var(--margin-small);
-}
+    margin-top: var(--margin-small) 0;
+} */
 
-/* Paragraph Styling */
 p {
     margin: 0;
 }
 
 .email {
-    /* font-size: var(--font-size-larger); */
     font-weight: 600;
 }
 
-/* Link Styling */
-a:hover {
-    text-decoration: underline;
-}
+/* --------------------------------- */
+/* Images & Horizontal Rule */
+/* --------------------------------- */
 
-/* Image Styling */
 img {
     width: 100%;
     height: auto;
 }
 
-/* Horizontal Rule Styling */
 hr {
     border: 0.03125rem solid var(--color-text); /* 0.5px */
     margin-top: 0.5rem; /* 8px */
 }
 
-/* Filter Container Styling */
+/* --------------------------------- */
+/* Filter Container & Options */
+/* --------------------------------- */
+
 #filter-container {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     margin-bottom: var(--margin-medium);
-}
-
-#tag-filters {
-    margin-top: 0.625rem; /* 10px */
-}
-
-#tag-filters label {
-    margin-right: 0.9375rem; /* 15px */
-    font-size: var(--font-size-small);
 }
 
 .filter-divider {
@@ -192,17 +193,14 @@ hr {
     margin: 16px 0;
 }
 
-/* Filter Option Styling */
 #filterMenu {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 56px;
     align-items: start;
-    overflow-x: auto; /* Allows horizontal scrolling when content overflows */
+    overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-
-    display: none;
 }
 
 .filter-category {
@@ -234,7 +232,10 @@ hr {
     flex-wrap: wrap;
 }
 
-/* Filter Button Styling */
+/* --------------------------------- */
+/* Buttons */
+/* --------------------------------- */
+
 #filterButton,
 #loadMoreButton,
 #searchToggle,
@@ -251,26 +252,21 @@ hr {
 
 #filterButton:hover,
 #loadMoreButton:hover,
-#searchToggle:hover {
-    text-decoration: underline;
-}
-
+#searchToggle:hover,
 .filter-tag:hover,
 .filter-tag.active {
     text-decoration: underline;
 }
 
-.filter-tag.active {
-    text-decoration: underline;
-}
-
-/* Load More Button Styling */
 #loadMoreButton {
     margin-top: 1.25rem; /* 20px */
     font-size: var(--font-size-medium);
 }
 
-/* Search Bar Styling */
+/* --------------------------------- */
+/* Search Bar */
+/* --------------------------------- */
+
 #searchContainer {
     position: fixed;
     top: 40%;
@@ -284,7 +280,7 @@ hr {
 #searchInput {
     padding: 1rem;
     width: 25rem; /* 400px */
-    border: 0.125rem solid #ddd; /* 2px */
+    border: 0.125rem solid var(--color-muted); /* 2px */
     font-family: var(--font-secondary);
     background-color: var(--color-background);
     font-size: 16px;
@@ -304,7 +300,10 @@ hr {
     color: #ff0000;
 }
 
-/* Autocomplete Container */
+/* --------------------------------- */
+/* Autocomplete Container & Suggestion */
+/* --------------------------------- */
+
 .autocomplete-container {
     position: absolute;
     top: 100%;
@@ -315,11 +314,9 @@ hr {
     border-top: none;
     max-height: 150px; /* Limit height for scrolling */
     overflow-y: auto;
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
     z-index: 10;
 }
 
-/* Autocomplete Suggestion */
 .autocomplete-suggestion {
     padding: 1rem;
     cursor: pointer;
@@ -327,106 +324,24 @@ hr {
     font-size: var(--font-size-small);
 }
 
-/* Suggestion hover effect */
 .autocomplete-suggestion:hover {
     background-color: #f0f0f0;
 }
 
-a {
-    text-decoration: none;
-    color: var(--color-text);
-}
+/* --------------------------------- */
+/* Info Containers */
+/* --------------------------------- */
 
-/* Info container */
 .info-container {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: space-between;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
 }
 
 .info-btn {
     font-weight: 500;
-}
-
-/* Footer Styling */
-footer {
-    background-color: var(--color-text);
-    margin: 0;
-    padding: var(--padding-medium);
-    padding: 0 1rem;
-    color: var(--color-background);
-    position: sticky;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-}
-
-.h1-footer {
-    font-size: 24vw;
-    color: var(--color-background);
-    opacity: 0.5;
-    box-sizing: border-box;
-    line-height: 1.4;
-
-    will-change: transform, opacity;
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-}
-
-/* Gallery Grid Styling */
-.gallery-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--margin-medium);
-}
-
-/* Website Card Styling */
-.website-card {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-
-    /* opacity: 0; Ensures the card starts invisible for the animation */
-    transform: translateY(20px); /* Starts from a slightly lower position */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.website-card img {
-    width: 100%;
-    height: auto;
-    transition: filter 0.3s ease;
-}
-
-.website-card img:hover {
-    filter: brightness(70%); /* Adjust brightness to darken the image */
-}
-
-.website-info-block {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.website-name {
-    font-size: var(--font-size-medium);
-    font-weight: 400;
-    margin: 0;
-}
-
-.website-tags {
-    font-size: var(--font-size-small);
-    color: var(--color-muted);
-    margin: 0.625rem 0; /* 10px */
-    display: flex;
-    gap: 1rem;
-}
-
-.website-summary {
-    font-size: 1rem;
-    color: var(--color-summary);
-    margin: 0.625rem 0; /* 10px */
 }
 
 .info-container p {
@@ -436,17 +351,6 @@ footer {
     justify-content: center;
     text-align: center;
     gap: 0.3rem;
-}
-
-#error-message {
-    padding-top: 20rem;
-    padding-bottom: 20rem;
-}
-
-#error-message p {
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
 }
 
 .info-containers {
@@ -467,6 +371,20 @@ footer {
     text-align: justify;
 }
 
+/* --------------------------------- */
+/* Error Message & Preloader */
+/* --------------------------------- */
+
+#error-message {
+    padding-top: 20rem;
+    padding-bottom: 20rem;
+}
+
+#error-message p {
+    display: flex;
+    justify-content: center;
+}
+
 .error-container {
     display: flex;
     flex-direction: column;
@@ -474,11 +392,9 @@ footer {
     gap: 0.5rem;
     padding: 1.5rem;
     text-align: center;
-
     line-height: 1.2;
 }
 
-/* Preloader Styling */
 body.preloader-active {
     overflow: hidden; /* Hide scrollbar */
     width: 100vw; /* Set the width to full viewport width */
@@ -510,6 +426,141 @@ body.preloader-active {
     animation-delay: 1s;
 }
 
+#preloader h1 {
+    font-size: 4rem;
+    color: var(--color-text);
+    margin: 0;
+    animation: fadeOut 1.5s forwards;
+}
+
+/* Hide preloader when page is fully loaded */
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* --------------------------------- */
+/* Footer styling */
+/* --------------------------------- */
+
+footer {
+    background-color: var(--color-text);
+    margin: 0;
+    padding: var(--padding-medium);
+    padding: 0 1rem;
+    color: var(--color-background);
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.h1-footer {
+    font-size: 24vw;
+    color: var(--color-background);
+    opacity: 0.5;
+    box-sizing: border-box;
+    line-height: 1.4;
+
+    will-change: transform, opacity;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* --------------------------------- */
+/* Gallery Grid and Website Card Styling */
+/* --------------------------------- */
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--margin-medium);
+}
+
+.website-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    will-change: opacity, transform; /* Performance optimization */
+}
+
+.website-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.website-image-link {
+    position: relative;
+    display: block;
+}
+
+.website-image-link img {
+    display: block;
+    width: 100%;
+}
+
+.visit-overlay {
+    position: absolute;
+    top: 48%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    color: var(--color-background);
+    font-size: 18px;
+    text-align: center;
+
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.website-card img {
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+.website-card img:hover {
+    filter: brightness(70%);
+}
+
+.website-image-link:hover .visit-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.website-info-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.website-name {
+    font-size: var(--font-size-medium);
+    font-weight: 400;
+    margin: 0;
+}
+
+.website-tags {
+    font-size: var(--font-size-small);
+    color: var(--color-muted);
+    margin: 0.625rem 0; /* 10px */
+    display: flex;
+    gap: 1rem;
+}
+
+.website-summary {
+    font-size: 1rem;
+    color: var(--color-summary);
+    margin: 0.625rem 0; /* 10px */
+}
+
+/* --------------------------------- */
+/* Keyframes */
+/* --------------------------------- */
+
 @keyframes slideOut {
     0% {
         transform: translateY(0);
@@ -517,13 +568,6 @@ body.preloader-active {
     100% {
         transform: translateY(-100%);
     }
-}
-
-#preloader h1 {
-    font-size: 4rem; /* Adjust size as needed */
-    color: var(--color-text); /* Adjust color as needed */
-    margin: 0;
-    animation: fadeOut 1.5s forwards;
 }
 
 @keyframes fadeOut {
@@ -535,13 +579,21 @@ body.preloader-active {
     }
 }
 
-/* Hide preloader when page is fully loaded */
-#preloader.hidden {
-    opacity: 0;
-    visibility: hidden;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Custom scrollbar styling */
+/* --------------------------------- */
+/* Custom Scrollbar Styling */
+/* --------------------------------- */
+
 ::-webkit-scrollbar {
     width: 10px; /* Width of the scrollbar */
 }
@@ -558,26 +610,11 @@ body.preloader-active {
     ); /* Color change on hover to indicate interactivity */
 }
 
+/* --------------------------------- */
 /* Responsive Styles */
-/* Applies to screens that are 1920px wide and 1080px tall or larger */
-@media (min-width: 1920px) and (min-height: 1080px) {
-    #filterMenu {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 48px;
-    }
+/* --------------------------------- */
 
-    #filterButton,
-    .filter-tag {
-        font-size: var(--font-size-large);
-    }
-
-    .filter-category h4,
-    .filter-category span {
-        font-size: var(--font-size-medium);
-    }
-}
-
-/* Applies to very wide screens, such as ultra-wide monitors */
+/* Ultra-wide screens (2560px and up) */
 @media (min-width: 2560px) {
     #filterButton,
     .filter-tag {
@@ -610,6 +647,25 @@ body.preloader-active {
     }
 }
 
+/* Very wide screens (1920px and up) */
+@media (min-width: 1920px) and (min-height: 1080px) {
+    #filterMenu {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 48px;
+    }
+
+    #filterButton,
+    .filter-tag {
+        font-size: var(--font-size-large);
+    }
+
+    .filter-category h4,
+    .filter-category span {
+        font-size: var(--font-size-medium);
+    }
+}
+
+/* Extra-large screens (1420px and below) */
 @media (max-width: 1420px) {
     h1 {
         font-size: 12rem;
@@ -620,14 +676,12 @@ body.preloader-active {
     }
 
     #filterMenu {
-        grid-template-columns: repeat(
-            auto-fill,
-            minmax(250px, 1fr)
-        ); /* Even wider columns for extra-large screens */
-        gap: 40px; /* Additional gap to match the screen size */
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 40px;
     }
 }
 
+/* Large screens (1160px and below) */
 @media (max-width: 1160px) {
     .gallery-container {
         grid-template-columns: repeat(2, 1fr);
@@ -643,22 +697,22 @@ body.preloader-active {
     }
 }
 
-/* FilterMenu respinsiveness */
+/* Medium screens (1024px and below) */
 @media (max-width: 1024px) {
-    /* #filterMenu {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 40px;
-    } */
-
     #filterMenu {
-        grid-template-columns: repeat(
-            auto-fill,
-            minmax(200px, 1fr)
-        ); /* Wider columns for bigger screens */
-        gap: 32px; /* More gap for larger screens */
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 32px;
     }
 }
 
+/* Small screens (955px and below) */
+@media (max-width: 955px) {
+    h2 {
+        font-size: 1rem;
+    }
+}
+
+/* Extra-small screens (900px and below) */
 @media (max-width: 900px) {
     main {
         padding-top: var(--padding-large);
@@ -674,12 +728,11 @@ body.preloader-active {
     }
 
     .filter-tag {
-        /* display: none; */
         font-size: 1.2rem !important;
     }
 }
 
-/* For mobile phones (max-width: 768px) */
+/* Mobile screens (768px and below) */
 @media (max-width: 768px) {
     header {
         display: flex;
@@ -697,7 +750,6 @@ body.preloader-active {
     h2 {
         margin-left: 0;
         max-width: 100%;
-        font-size: 1rem;
     }
 
     .gallery-container {
@@ -724,7 +776,7 @@ body.preloader-active {
     }
 }
 
-/* For mobile phones (max-width: 700px) */
+/* Very small screens (700px and below) */
 @media (max-width: 700px) {
     main {
         padding: var(--font-size-small);
@@ -746,6 +798,7 @@ body.preloader-active {
     }
 }
 
+/* Mobile phones (480px and below) */
 @media (max-width: 480px) {
     #filterMenu {
         grid-template-columns: 1fr;
