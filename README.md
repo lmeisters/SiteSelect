@@ -16,3 +16,7 @@ SiteSelect is a curated platform offering a collection of the web's most innovat
 - **Filter**: Apply filters to narrow down galleries by categories or tags.
 - **Explore**: Browse through the curated galleries to find fresh ideas for your projects.
 - **Submit**: Contribute by submitting your favorite design inspirations via email.
+                           
+                      
+                            
+
