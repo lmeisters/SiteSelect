@@ -127,7 +127,6 @@ function loadMoreWebsites() {
     filterWebsites();
 }
 
-// Render filters dynamically in the menu
 function renderFilters() {
     const filterMenu = document.getElementById("filterMenu");
     filterMenu.innerHTML = "";
@@ -141,8 +140,13 @@ function renderFilters() {
 
         filterCategory.options.slice(0, 20).forEach((tag) => {
             const span = document.createElement("span");
-            span.textContent = tag;
             span.className = "filter-tag";
+
+            // Create an inner span to wrap the text content
+            const innerSpan = document.createElement("span");
+            innerSpan.textContent = tag;
+
+            span.appendChild(innerSpan);
             span.addEventListener("click", () => toggleFilter(tag));
             categoryDiv.appendChild(span);
         });
@@ -285,6 +289,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     filterButton.addEventListener("click", function (event) {
         event.stopPropagation();
+
+        // Toggle active state
+        filterButton.classList.toggle("active");
+
         toggleFilterMenu();
     });
 
@@ -356,9 +364,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         .slice(0, 7);
     const commonTagsContainer = document.getElementById("commonTagsContainer");
 
+    // Create "All" button
     const allButton = document.createElement("button");
     allButton.className = "filter-tag active";
-    allButton.textContent = "All";
+    const allButtonText = document.createElement("span");
+    allButtonText.textContent = "All";
+    allButton.appendChild(allButtonText);
     allButton.addEventListener("click", () => {
         selectedFilters.clear();
         handleActiveButtonUpdate("All");
@@ -366,10 +377,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
     commonTagsContainer.appendChild(allButton);
 
+    // Create filter tag buttons
     topTags.forEach((tag) => {
         const tagButton = document.createElement("button");
         tagButton.className = "filter-tag";
-        tagButton.textContent = tag;
+        const tagButtonText = document.createElement("span");
+        tagButtonText.textContent = tag;
+        tagButton.appendChild(tagButtonText);
         tagButton.addEventListener("click", () => {
             toggleFilter(tag);
             handleActiveButtonUpdate(tag);
@@ -402,10 +416,6 @@ document.addEventListener("scroll", function () {
 window.onload = function () {
     // Preloader animation
     document.querySelector(".loader-slide").classList.add("open");
-
-    // Get the scrollbar width to handle content shift
-    const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
 
     // Start animations earlier, while preloader is still running
     setTimeout(function () {

@@ -75,15 +75,42 @@ main {
     color: var(--color-background);
 }
 
-a {
+a.info-btn,
+a.email {
+    text-decoration: none;
+    color: var(--color-text);
+    position: relative;
+}
+
+a.info-btn::after,
+a.email::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(
+        90deg,
+        var(--color-muted),
+        var(--color-muted)
+    );
+    background-size: 0 2px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 0.3s ease-in;
+}
+
+a.info-btn:hover::after,
+a.email:hover::after {
+    background-size: 100% 2px;
+}
+
+a.website-image-link,
+a.logo {
     text-decoration: none;
     color: var(--color-text);
 }
-
-a:hover {
-    text-decoration: underline;
-}
-
 /* --------------------------------- */
 /* Header & Navbar */
 /* --------------------------------- */
@@ -235,7 +262,6 @@ hr {
 /* --------------------------------- */
 /* Buttons */
 /* --------------------------------- */
-
 #filterButton,
 #loadMoreButton,
 #searchToggle,
@@ -248,19 +274,104 @@ hr {
     margin: 0;
     padding: 0;
     cursor: pointer;
+    position: relative;
+    display: inline-flex;
 }
 
-#filterButton:hover,
-#loadMoreButton:hover,
-#searchToggle:hover,
-.filter-tag:hover,
-.filter-tag.active {
-    text-decoration: underline;
+#filterButton span,
+#loadMoreButton span,
+#searchToggle span,
+.filter-tag span {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+    cursor: pointer;
+}
+
+#filterButton span::before,
+#loadMoreButton span::before,
+#searchToggle span::before,
+.filter-tag span::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(
+        90deg,
+        var(--color-muted),
+        var(--color-muted)
+    );
+    background-size: 0 2px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 0.3s ease-in;
+}
+
+#filterButton span:hover::before,
+#loadMoreButton span:hover::before,
+#searchToggle span:hover::before,
+.filter-tag span:hover::before,
+.filter-tag.active span::before {
+    background-size: 100% 2px;
 }
 
 #loadMoreButton {
-    margin-top: 1.25rem; /* 20px */
+    margin-top: 1.25rem;
     font-size: var(--font-size-medium);
+    background: none;
+    border: none;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    pointer-events: none;
+}
+
+#loadMoreButton span {
+    display: inline-block;
+    padding-bottom: 2px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+#loadMoreButton span::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(
+        90deg,
+        var(--color-muted),
+        var(--color-muted)
+    );
+    background-size: 0 2px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 0.3s ease-in;
+}
+
+#loadMoreButton span:hover::before {
+    background-size: 100% 2px;
+}
+
+#filterButton.active,
+#loadMoreButton.active,
+#searchToggle.active,
+.filter-tag.active {
+    color: var(--color-text);
+}
+
+#filterButton.active span::before,
+#loadMoreButton span:hover::before,
+#searchToggle span:hover::before,
+.filter-tag.active span::before {
+    background-size: 100% 2px;
 }
 
 /* --------------------------------- */
@@ -506,7 +617,7 @@ footer {
     position: absolute;
     top: 48%;
     left: 48%;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
     color: var(--color-background);
     font-size: 18px;
     text-align: center;
