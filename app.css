@@ -592,6 +592,7 @@ footer {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    /* opacity: 0; */
 
     transform: translateY(20px);
     transition: opacity 1s ease-out, transform 1s ease-out;
@@ -657,7 +658,7 @@ footer {
 .website-tags {
     font-size: var(--font-size-small);
     color: var(--color-muted);
-    margin: 0.625rem 0; /* 10px */
+    margin: 0.5rem 0;
     display: flex;
     gap: 1rem;
 }
@@ -665,7 +666,16 @@ footer {
 .website-summary {
     font-size: 1rem;
     color: var(--color-summary);
-    margin: 0.625rem 0; /* 10px */
+    margin: 0.5rem 0;
+}
+
+.blurred {
+    filter: blur(10px);
+    transition: filter 2s ease-out;
+}
+
+img:not(.blurred) {
+    filter: none;
 }
 
 /* --------------------------------- */

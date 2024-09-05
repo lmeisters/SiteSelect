@@ -80,6 +80,13 @@ function createWebsiteCard(website) {
     image.src = website.imageUrl;
     image.alt = `${website.name} Thumbnail`;
 
+    image.loading = "lazy";
+    image.classList.add("blurred");
+
+    image.onload = function () {
+        image.classList.remove("blurred");
+    };
+
     const nameHeader = card.querySelector(".website-name");
     nameHeader.textContent = website.name;
 
