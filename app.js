@@ -129,24 +129,6 @@ function renderGallery(filteredWebsites = websites) {
         gallery.appendChild(card);
     });
 
-    // GSAP animation for cards
-    gsap.fromTo(
-        ".website-card",
-        {
-            opacity: 0,
-            y: 30,
-            scale: 0.95,
-        },
-        {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.3,
-            stagger: 0.05,
-            ease: "power2.out",
-        }
-    );
-
     loadMoreButton.style.display =
         displayedWebsitesCount >= filteredWebsites.length ? "none" : "block";
 }
@@ -155,9 +137,38 @@ function renderGallery(filteredWebsites = websites) {
 function loadMoreWebsites() {
     const previousCount = displayedWebsitesCount;
     displayedWebsitesCount += websitesPerPage;
-    filterWebsites();
 
-    // Animate newly loaded cards
+    const gallery = document.getElementById("gallery");
+    const loadMoreButton = document.getElementById("loadMoreButton");
+
+    // Get the current filtered websites
+    const searchQuery = document
+        .getElementById("searchInput")
+        .value.toLowerCase();
+    const filteredWebsites = websitesCache.filter((website) => {
+        const matchesSearchQuery =
+            website.name.toLowerCase().includes(searchQuery) ||
+            website.summary.toLowerCase().includes(searchQuery) ||
+            website.tags.some((tag) => tag.toLowerCase().includes(searchQuery));
+
+        const matchesFilters =
+            selectedFilters.size === 0 ||
+            website.tags.some((tag) => selectedFilters.has(tag));
+
+        return matchesSearchQuery && matchesFilters;
+    });
+
+    // Render only the new cards
+    const newWebsites = filteredWebsites.slice(
+        previousCount,
+        displayedWebsitesCount
+    );
+    newWebsites.forEach((website) => {
+        const card = createWebsiteCard(website);
+        gallery.appendChild(card);
+    });
+
+    // Animate only the newly added cards
     gsap.fromTo(
         ".website-card:nth-child(n + " + (previousCount + 1) + ")",
         {
@@ -174,6 +185,10 @@ function loadMoreWebsites() {
             ease: "power2.out",
         }
     );
+
+    // Update the "Load more" button visibility
+    loadMoreButton.style.display =
+        displayedWebsitesCount >= filteredWebsites.length ? "none" : "block";
 }
 
 function renderFilters() {
@@ -274,6 +289,9 @@ function filterWebsites() {
 
     renderGallery(filteredWebsites);
 
+    // Animate the cards after rendering
+    animateWebsiteCards();
+
     // Show or hide the error message based on the number of filtered results
     const errorMessage = document.getElementById("error-message");
     if (filteredWebsites.length === 0) {
@@ -330,11 +348,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     displayedWebsitesCount = websitesPerPage;
     renderFilters();
-
-    // Wait for the preloader to finish before rendering the gallery
-    setTimeout(() => {
-        filterWebsites();
-    }, 2000); // Adjust this delay to match your preloader duration
 
     filterButton.addEventListener("click", function (event) {
         event.stopPropagation();
@@ -459,6 +472,24 @@ document.addEventListener("scroll", function () {
     footerHeading.style.transform = newTransform;
 });
 
+// Animate website cards
+function animateWebsiteCards() {
+    return gsap.fromTo(
+        ".website-card",
+        {
+            opacity: 0,
+            y: 30,
+        },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: "power2.out",
+        }
+    );
+}
+
 // Preloader and animations
 window.onload = function () {
     // Preloader animation
@@ -467,6 +498,7 @@ window.onload = function () {
     // Start animations earlier, while preloader is still running
     setTimeout(function () {
         startAnimations();
+        filterWebsites(); // Render the gallery (this will also animate the cards)
     }, 1000); // Start animations halfway through the preloader
 
     // Hide the preloader and show the main content
@@ -475,8 +507,6 @@ window.onload = function () {
         preloader.style.display = "none";
 
         document.body.style.overflowY = "auto";
-
-        filterWebsites(); // Render the gallery after preloader is hidden
     }, 2000);
 };
 
@@ -546,5 +576,6 @@ function startAnimations() {
             y: 10,
             duration: 0.5,
             ease: "power2.out",
-        });
+        })
+        .add(animateWebsiteCards()); // Add the website card animation at the end
 }
