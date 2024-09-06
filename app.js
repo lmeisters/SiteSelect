@@ -101,7 +101,12 @@ function createWebsiteCard(website) {
     const summaryParagraph = card.querySelector(".website-summary");
     summaryParagraph.textContent = website.summary;
 
-    return card;
+    // Wrap the card content in a div
+    const cardWrapper = document.createElement("div");
+    cardWrapper.className = "website-card";
+    cardWrapper.appendChild(card);
+
+    return cardWrapper;
 }
 
 // Variables
@@ -117,12 +122,30 @@ function renderGallery(filteredWebsites = websites) {
     const loadMoreButton = document.getElementById("loadMoreButton");
 
     gallery.innerHTML = "";
-    for (let i = 0; i < displayedWebsitesCount; i++) {
-        const website = filteredWebsites[i];
-        if (website) {
-            gallery.appendChild(createWebsiteCard(website));
+    const websitesToShow = filteredWebsites.slice(0, displayedWebsitesCount);
+
+    websitesToShow.forEach((website) => {
+        const card = createWebsiteCard(website);
+        gallery.appendChild(card);
+    });
+
+    // GSAP animation for cards
+    gsap.fromTo(
+        ".website-card",
+        {
+            opacity: 0,
+            y: 30,
+            scale: 0.95,
+        },
+        {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: "power2.out",
         }
-    }
+    );
 
     loadMoreButton.style.display =
         displayedWebsitesCount >= filteredWebsites.length ? "none" : "block";
@@ -130,8 +153,27 @@ function renderGallery(filteredWebsites = websites) {
 
 // Load more websites
 function loadMoreWebsites() {
+    const previousCount = displayedWebsitesCount;
     displayedWebsitesCount += websitesPerPage;
     filterWebsites();
+
+    // Animate newly loaded cards
+    gsap.fromTo(
+        ".website-card:nth-child(n + " + (previousCount + 1) + ")",
+        {
+            opacity: 0,
+            y: 30,
+            scale: 0.95,
+        },
+        {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: "power2.out",
+        }
+    );
 }
 
 function renderFilters() {
@@ -184,34 +226,30 @@ function handleActiveButtonUpdate(tag) {
     if (clickedButton) clickedButton.classList.add("active");
 }
 
+function handleAllFilter() {
+    selectedFilters.clear();
+    displayedWebsitesCount = websitesPerPage;
+    handleActiveButtonUpdate("All");
+    filterWebsites();
+}
+
 // Toggle filter state and update display
 function toggleFilter(tag) {
-    const filterMenu = document.getElementById("filterMenu");
-    const commonTagsContainer = document.getElementById("commonTagsContainer");
-    const allTags = filterMenu.querySelectorAll(".filter-tag");
-    const commonTags = commonTagsContainer.querySelectorAll(".filter-tag");
-
-    // Find the clicked tag element
-    const clickedTag =
-        Array.from(allTags).find((el) => el.textContent === tag) ||
-        Array.from(commonTags).find((el) => el.textContent === tag);
-
-    if (clickedTag) {
-        if (clickedTag.classList.contains("active")) {
-            // If the clicked tag is already active, deactivate it
-            clickedTag.classList.remove("active");
-            selectedFilters.delete(tag); // Remove tag from selected filters
-        } else {
-            // Otherwise, activate the tag
-            clickedTag.classList.add("active");
-            selectedFilters.clear(); // Clear any other active filters (if necessary)
-            selectedFilters.add(tag); // Add this tag to selected filters
-            handleActiveButtonUpdate(tag);
-        }
-
-        // Update the gallery based on the selected filters
-        filterWebsites();
+    if (tag === "All") {
+        handleAllFilter();
+        return;
     }
+
+    if (selectedFilters.has(tag)) {
+        selectedFilters.delete(tag);
+    } else {
+        selectedFilters.clear();
+        selectedFilters.add(tag);
+    }
+
+    displayedWebsitesCount = websitesPerPage;
+    handleActiveButtonUpdate(tag);
+    filterWebsites();
 }
 
 // Filter websites by tags and search input
@@ -292,7 +330,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     displayedWebsitesCount = websitesPerPage;
     renderFilters();
-    filterWebsites();
+
+    // Wait for the preloader to finish before rendering the gallery
+    setTimeout(() => {
+        filterWebsites();
+    }, 2000); // Adjust this delay to match your preloader duration
 
     filterButton.addEventListener("click", function (event) {
         event.stopPropagation();
@@ -378,9 +420,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     allButtonText.textContent = "All";
     allButton.appendChild(allButtonText);
     allButton.addEventListener("click", () => {
-        selectedFilters.clear();
-        handleActiveButtonUpdate("All");
-        filterWebsites();
+        handleAllFilter();
     });
     commonTagsContainer.appendChild(allButton);
 
@@ -427,7 +467,7 @@ window.onload = function () {
     // Start animations earlier, while preloader is still running
     setTimeout(function () {
         startAnimations();
-    }, 1000); // Delay animations
+    }, 1000); // Start animations halfway through the preloader
 
     // Hide the preloader and show the main content
     setTimeout(function () {
@@ -436,13 +476,7 @@ window.onload = function () {
 
         document.body.style.overflowY = "auto";
 
-        const websiteCards = document.querySelectorAll(".website-card");
-        websiteCards.forEach((card, index) => {
-            setTimeout(function () {
-                card.offsetHeight;
-                card.classList.add("visible");
-            }, 100 * index);
-        });
+        filterWebsites(); // Render the gallery after preloader is hidden
     }, 2000);
 };
 
