@@ -8,7 +8,7 @@ async function loadData() {
     if (websitesCache.length > 0) return websitesCache;
 
     try {
-        const response = await fetch("../config/sites-config.json");
+        const response = await fetch("../../config/sites-config.json");
         websitesCache = await response.json();
 
         // Collect all tags from websites
@@ -59,7 +59,7 @@ async function loadFilters() {
     if (filterOptionsCache.length > 0) return filterOptionsCache;
 
     try {
-        const response = await fetch("../config/filters.json");
+        const response = await fetch("../../config/filters.json");
         filterOptionsCache = await response.json();
         return filterOptionsCache;
     } catch (error) {
