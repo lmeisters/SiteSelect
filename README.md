@@ -20,7 +20,7 @@ SiteSelect is a curated platform offering a collection of the web's most innovat
 
 -   **JavaScript**: Used for core programming, interactive functionality, and DOM manipulation.
 -   **HTML**: Provides structure and elements such as buttons and containers.
--   **CSS**: Manages styling and animations for a polished look and feel.
+-   **SCSS/SASS**: Enhances CSS with features like variables, nesting, and mixins for more maintainable and scalable styling.
 -   **GSAP (GreenSock Animation Platform)**: Handles advanced animations and transitions.
 -   **Fetch API**: Used to load data from external JSON files asynchronously.
 -   **Debounce Function**: Optimizes input handling and reduces the frequency of function calls.

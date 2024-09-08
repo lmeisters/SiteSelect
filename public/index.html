@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Discover expertly curated design galleries to elevate your web projects with innovative inspiration and stunning examples."
+        />
+        <meta
+            name="keywords"
+            content="design galleries, web design inspiration, visual references, creative projects"
+        />
+        <link rel="stylesheet" href="../src/css/main.min.css" />
+        <link rel="preload" href="../src/css/main.min.css" as="style" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="../assets/favicon/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="../assets/favicon/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="../assets/favicon/favicon-16x16.png"
+        />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
+            defer
+        ></script>
+        <title>SiteSelect | Curated Web Design Inspiration</title>
+    </head>
+    <body class="preloader-active">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div class="loader-slide"><h1>SiteSelect.</h1></div>
+        </div>
+
+        <nav class="navbar">
+            <div class="container">
+                <span id="searchToggle" class="nav-item"
+                    ><span>Search</span></span
+                >
+            </div>
+        </nav>
+
+        <main>
+            <header>
+                <h1>SiteSelect.</h1>
+                <div class="header-headings">
+                    <h2>
+                        Discover the Web's Most Innovative Design Galleries -
+                        Categorized and Filtered for Instant Creative
+                        Inspiration, Featuring Rich Web Galleries with Stunning
+                        Examples to Spark Creativity and Elevate Your Projects
+                    </h2>
+                </div>
+            </header>
+
+            <div id="searchContainer" class="search-container">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search topics..."
+                    aria-label="Search topics"
+                    autocomplete="off"
+                />
+                <div
+                    id="autocompleteContainer"
+                    class="autocomplete-container"
+                ></div>
+                <span id="closeSearch">Close</span>
+            </div>
+
+            <div id="filter-container">
+                <div class="filter-container-buttons">
+                    <button id="filterButton"><span>Filter</span></button>
+                    <div class="common-tags" id="commonTagsContainer"></div>
+                </div>
+                <hr class="filter-divider" />
+                <div id="filterMenu" style="display: none"></div>
+            </div>
+
+            <template id="website-card-template">
+                <div class="website-card">
+                    <a href="#" target="_blank" class="website-image-link">
+                        <img src="" alt="Website Thumbnail" />
+                        <div class="visit-overlay">Visit</div>
+                    </a>
+                    <div class="website-info">
+                        <hr />
+                        <div class="website-info-block">
+                            <h3 class="website-name"></h3>
+                            <p class="website-tags"></p>
+                        </div>
+                        <hr />
+                        <p class="website-summary"></p>
+                    </div>
+                </div>
+            </template>
+
+            <div id="gallery" class="gallery-container"></div>
+
+            <button id="loadMoreButton"><span>Load more</span></button>
+
+            <div id="error-message" style="display: none">
+                <p>
+                    No results found. Please try a different filter or search
+                    term.
+                </p>
+            </div>
+
+            <div class="info-container">
+                <a class="info-btn" href="info.html">Info</a>
+                <p>
+                    Submit more website inspirations
+                    <span class="dash">-</span>
+                    <a class="email" href="mailto:siteselect@gmail.com"
+                        >siteselect@gmail.com</a
+                    >
+                </p>
+            </div>
+        </main>
+
+        <footer>
+            <h1 class="h1-footer">SiteSelect</h1>
+        </footer>
+
+        <script type="module" src="../src/js/main.js"></script>
+    </body>
+</html>
