@@ -122,6 +122,12 @@ function renderGallery(filteredWebsites = websites) {
     const loadMoreButton = document.getElementById("loadMoreButton");
 
     gallery.innerHTML = "";
+
+    if (filteredWebsites.length === 0) {
+        loadMoreButton.style.display = "none";
+        return;
+    }
+
     const websitesToShow = filteredWebsites.slice(0, displayedWebsitesCount);
 
     websitesToShow.forEach((website) => {
@@ -289,8 +295,10 @@ function filterWebsites() {
 
     renderGallery(filteredWebsites);
 
-    // Animate the cards after rendering
-    animateWebsiteCards();
+    // Only animate cards if there are filtered websites
+    if (filteredWebsites.length > 0) {
+        animateWebsiteCards();
+    }
 
     // Show or hide the error message based on the number of filtered results
     const errorMessage = document.getElementById("error-message");
