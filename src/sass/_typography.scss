@@ -67,7 +67,7 @@ a {
     color: var(--color-text);
     position: relative;
     display: block;
-    overflow: hidden;
+    overflow: hidden;     
 
     img {
       transition: filter 0.3s ease;
@@ -88,7 +88,7 @@ a {
 
     &:hover {
       img {
-        filter: brightness(50%);
+        filter: brightness(50%) !important;
       }
 
       .visit-overlay {
@@ -101,4 +101,8 @@ a {
     text-decoration: none;
     color: var(--color-text);
   }
+}
+
+a.website-image-link:hover img {
+  filter: brightness(75%) !important;
 }

@@ -192,7 +192,7 @@ a.website-image-link .visit-overlay {
   transition: opacity 0.3s ease;
 }
 a.website-image-link:hover img {
-  filter: brightness(50%);
+  filter: brightness(50%) !important;
 }
 a.website-image-link:hover .visit-overlay {
   opacity: 1;
@@ -200,6 +200,10 @@ a.website-image-link:hover .visit-overlay {
 a.logo {
   text-decoration: none;
   color: var(--color-text);
+}
+
+a.website-image-link:hover img {
+  filter: brightness(75%) !important;
 }
 
 :root {
